@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>雑メモ - 環境構築メモ</title><link href="https://zatsumemo.dev/" rel="alternate"/><link href="https://zatsumemo.dev/feeds/setup.atom.xml" rel="self"/><id>https://zatsumemo.dev/</id><updated>2025-12-28T16:00:00+09:00</updated><entry><title>GitHub Pages＋PelicanでつくるBlog：アイキャッチ・プレビュー画像の設定</title><link href="https://zatsumemo.dev/blog/github-pages-and-ogp-image-preview.html" rel="alternate"/><published>2025-12-28T16:00:00+09:00</published><updated>2025-12-28T16:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-28:/blog/github-pages-and-ogp-image-preview.html</id><summary type="html">&lt;p&gt;OGPの設定でSNSなどでプレビューを表示させるまでの手順メモ&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/ogpimage_preview.png" title="チャッピー作成"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;Blogをつくった後、Twitter(X)などで見た場合にプレビューが表示されないので、どうにかしたいなーという状況でした。今回はプレビュー表示までの手順についてまとめます。&lt;br&gt;&amp;nbsp;※本記事のトップ画像がプレビューされるようにしてます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="ogp"&gt;プレビュー表示はOGPの設定を使う&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://ogp.me/"&gt;Open Graph Protocol&lt;/a&gt;というもので、HTTPへのメタ情報がOGPのイメージ情報として記載されれば、プレビューがされるとのこと。&lt;br&gt;
+画像サイズは1200x630、pngファイルあたりで作成しておくとよいとのことです。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://qiita.com/o_ob/items/6c71bc783df428116ef8"&gt;TwitterやFacebookで表示されるOGPイメージをGithubPagesで簡単に実装する&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://plugins.poppo-ya.com/posts/2017/11/04-ogp/"&gt;ogpの導入(Pelican)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="pelicanogp"&gt;pelicanでのOGPのイメージ指定方法（たぶんテーマ依存）&lt;/h4&gt;
+&lt;p&gt;（自分の使用しているテンプレートでは）記事のメタデータ（&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-writing.html#url"&gt;記事用Markdownの最初に記載するアレ&lt;/a&gt;）のシリーズに&lt;code&gt;Cover&lt;/code&gt;を追加して該当ファイル名を追加する想定のようでした。&lt;/p&gt;
+&lt;p&gt;以下のような感じで追記。パス設定しなきゃいけない作りで雑に仕込んでます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Cover: setup/pelican/ogpimage_preview.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;テンプレート側に&lt;code&gt;Cover&lt;/code&gt;のメタデータに応じて、プレビュー画像を選択設定するようになってました。&lt;br&gt;
+&lt;code&gt;Cover&lt;/code&gt;が存在していれば指定した画像データ、無ければ&lt;code&gt;pelicanconf.py&lt;/code&gt;に&lt;code&gt;SITELOGO&lt;/code&gt;として設定したファイルが指定されてました。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pelicanconf.py&lt;/code&gt;で&lt;code&gt;SITELOGO&lt;/code&gt;として設定したデータ（logo.png）がここで使われるとのこと。&lt;br&gt;
+→なので、&lt;strong&gt;logo.pngは画像サイズは1200x630のpngデータなりで用意するのがよいでしょう&lt;/strong&gt;&lt;br&gt;
+※自分は雑なlogo.pngのデータだったので、プレビュー画像表示されてませんでした…orz&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.andreagrandi.it/posts/how-to-show-cover-image-pelican-blog-posts/"&gt;How to show a cover image in Pelican based blog&amp;nbsp;posts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="templatepelicanconfpy"&gt;テーマのtemplateおよびpelicanconf.pyの修正メモ&lt;/h4&gt;
+&lt;p&gt;テーマ依存と思われるので、ここについては参考程度（自分用のメモ）です。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;templateの修正&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OPGのメタデータがHTMLに反映される箇所を修正してます。&lt;/p&gt;
+&lt;p&gt;対象ファイルは&lt;code&gt;og_article.html&lt;/code&gt;。たぶんテーマによって変わります。&lt;br&gt;
+&lt;code&gt;&amp;lt;meta property="og:image"&lt;/code&gt;あたりでテーマのディレクトリの検索をすると、修正対象のファイルが見つかると思われます。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;og:image&lt;/code&gt;の周辺部分を以下のように書き替えてます。メタデータの&lt;code&gt;Cover&lt;/code&gt;の有無で対象の画像データが変わります。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;{% if &amp;#39;cover&amp;#39; in article.metadata %}
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;property&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;og:image&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}/{{ ARTICLE_BASE_PATH }}/{{ article.metadata[&amp;#39;cover&amp;#39;] }}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+{% else %}
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;property&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;og:image&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}/{{ SITELOGO }}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pelicanconf.pyの追加&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;上記の&lt;code&gt;ARTICLE_BASE_PATH&lt;/code&gt;は無くてもよいですが、まあ固定だろう内容なので入れてます。&lt;/p&gt;
+&lt;p&gt;以下の感じです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;ARTICLE_BASE_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;blog&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;各記事の&lt;code&gt;Cover&lt;/code&gt;メタデータには、blog以下のファイルパスを入れる感じとなります。&lt;br&gt;&amp;nbsp;※ちょっとイマイチ&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;動作確認方法&lt;/h4&gt;
+&lt;p&gt;Slackに自分宛でURLを送ってみる、とかがよいかもしれないです。以下のように表示されるようになりました。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Cover&lt;/code&gt;指定なし（logo.pngが対象となる）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="logo.pngが対象" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/ogp_image_test_no_cover.png" title="logo.pngが対象"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Cover&lt;/code&gt;指定あり&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/ogp_image_test_with_cover.png" title="指定したデータが対象"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;ちなみに、Twitter(X)は一度投稿するとキャッシュが残るらしいので、&lt;code&gt;Cover&lt;/code&gt;指定なしの表示に一度失敗した後などには、しばらく反映まで待った方がよさそうです。（&lt;a href="https://zenn.dev/buenotheebiten/articles/2ef29216bb01a6"&gt;参考&lt;/a&gt;）&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_2"&gt;本記事の設定をした場合の注意事項&lt;/h4&gt;
+&lt;p&gt;注意事項が2点あります。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.&amp;nbsp;メタデータ&lt;code&gt;Cover&lt;/code&gt;のパス指定方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;前節までの設定をしたうえで、本記事のメタデータは以下となります（一部省略）。&lt;code&gt;blog&lt;/code&gt;以下のディレクトリパスを書くのがちょいメンドイですね。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Title: GitHub Pages＋PelicanでつくるBlog：アイキャッチ・プレビュー画像の設定
+Slug: github-pages-and-ogp-image-preview
+Summary: OGPの設定でSNSなどでプレビューを表示させるまでの手順メモ
+Cover: setup/pelican/ogpimage_preview.png
+TOC: show
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.&amp;nbsp;プレビュー用のデータ指定だけではデプロイ用のディレクトリにコピーされない&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;プレビュー用のデータ指定だけではデプロイ側の&lt;code&gt;output&lt;/code&gt;ディレクトリにコピーされません。そのため、本記事も記事の最初にプレビュー用の画像を入れることでコピーされるようにしてます。&lt;/p&gt;
+&lt;p&gt;この辺はルートの&lt;code&gt;image&lt;/code&gt;ディレクトリで管理するなど、工夫した方がやりやすいかもしれませんね。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/><category term="OGP"/></entry><entry><title>Google Workspaceの契約をしてみた</title><link href="https://zatsumemo.dev/blog/register-google-workspace.html" rel="alternate"/><published>2025-12-27T18:00:00+09:00</published><updated>2025-12-27T18:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-27:/blog/register-google-workspace.html</id><summary type="html">&lt;p&gt;せっかく独自ドメインを取ったのでGoogle Workspace&amp;nbsp;Standardの契約へ。その時の手順メモ&lt;/p&gt;</summary><content type="html">&lt;p&gt;独自ドメインがあれば企業向けのGoogleサービスであるGoogle&amp;nbsp;Workspaceにも登録できる！&lt;/p&gt;
+&lt;p&gt;ということで、早速登録してみました。たいした手間ではないですが、簡単にメモを残しておきます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="google-workspace"&gt;Google&amp;nbsp;Workspace登録時のトレードオフ検討&lt;/h4&gt;
+&lt;p&gt;年末でサブスク関連を見直す機会となったのですが、あまり利用していないZoomへの支払いを止めようと思いつつ、他のサービスへの切替を検討してました。Google&amp;nbsp;Meetを使いつつ、折角なのでAI関連サービスも使えるとよいとは思ったのですが、Googleは個人向けと企業向けの双方のサービスがあったのですね。&lt;/p&gt;
+&lt;p&gt;結論としては、自分はGoogle&amp;nbsp;Workspaceがよいと判断して契約しました。ざっくり以下のような理由となります。2025/12段階の情報となりますが、真面目に検討する方は参考情報も見てもらえればと思います。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;比較サービスは、Google One &lt;span class="caps"&gt;AI&lt;/span&gt; Pro（個人向け）とGoogle Workspace&amp;nbsp;Standard（企業向け）&lt;/li&gt;
+&lt;li&gt;双方で利用できるサービスは似たようなもの、年額はGoogle Workspace&amp;nbsp;Standardの方が安く済む&lt;/li&gt;
+&lt;li&gt;Google Workspace&amp;nbsp;Standardの登録には独自ドメインが必要（すでに持っている）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.room8.co.jp/gemini-workspace-vs-pro/"&gt;Geminiの契約、ややこしすぎ問題。Google&amp;nbsp;OneとWorkspaceどっち選ぶ？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nomolk.hatenablog.com/entry/2025/06/05/113000"&gt;個人事業主や副業用でGoogleに課金するときどれ選べばいいんだよ問題・AI対応&amp;nbsp;2025年版&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;と、いうことで、以降はGoogle Workspace Standardの契約時のメモです。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="google-workspace-standard"&gt;Google Workspace&amp;nbsp;Standardの契約時における手順メモ&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://zenn.dev/hi_ka_ru/articles/google-workspace-business-standard"&gt;【個人利用】Google Workspace Business&amp;nbsp;Standardの登録&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上記記載の通りの手順で登録できます。以下のような手順なり。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;会社名、人数の設定&lt;/li&gt;
+&lt;li&gt;Googleアカウント保持者の管理者としての設定&lt;/li&gt;
+&lt;li&gt;Cloudflareの独自ドメインがあるので、ドメインを設定→CloudflareのDNS連携をして登録&lt;/li&gt;
+&lt;li&gt;Gmailを使えるようにCloudflareのDNS連携をして登録&lt;/li&gt;
+&lt;li&gt;GmailｎDKIMの設定&amp;nbsp;※Cloudflareの連携がうまくいかなかったので手動登録&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;折角なのでちょっとした補足。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;プロモーションコード？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;申し込み・プランの選択時にプロモーションコードを入れると安くなる、という動線があるんですね。そしてそのコードを配布する人たちもいる様子。&lt;br&gt;
+個人情報取ってる感触もあり、なんぞこれ？と思っていると、すでにGoogle&amp;nbsp;Workspaceのアカウントを持っている人が他の人へプロモーションコード提供ができる様子。&lt;/p&gt;
+&lt;p&gt;安くできるのは事実っぽい。信頼できる方とかから貰えるとよいかもしれませんね（自分はプロモーションコードを使いませんでした）&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DKIMの設定&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;（2025/12段階では）契約時に貰えるメールの設定時にDKIM（なりすましメールを防ぐ手段の一つ）を設定しました。&lt;br&gt;&amp;nbsp;CloudflareのDNS設定が必要なのですが、連携がうまくいかず、手動で設定してます。手順は以下。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;手動設定を選択、DKIM鍵のビット長を2048でレコードを作成（Cloudflareは2048でOK）&lt;/li&gt;
+&lt;li&gt;画面に出た値をコピー&lt;/li&gt;
+&lt;li&gt;CloudflareのDNSレコードへ設定（&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-original-domain.html"&gt;設定の動線はこちらの記事も参考&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Type&lt;/code&gt;に&lt;code&gt;TXT&lt;/code&gt;を選択&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Name&lt;/code&gt;の値をコピペ（google._domainkeyだった）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Content&lt;/code&gt;の値をコピペ（やたら長い値）&lt;/li&gt;
+&lt;li&gt;DNS登録の参考情報は&lt;a href="https://support.google.com/a/answer/174124?hl=ja"&gt;こちら&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;実際の値は当然隠しますが、こんな感じです。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CloudflareのDNSレコード設定" class="img-caption" src="https://zatsumemo.dev/blog/setup/various/dkim_setting.png" title="コピペで作成"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;これで登録時の作業が完了、Gmailも含めて各サービスが使えるようになりました。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="google-workspace-standard_1"&gt;Google Workspace&amp;nbsp;Standardのよさげな感じのところ&lt;/h4&gt;
+&lt;p&gt;使い始めたばかりですが、Google Meet、Google Drive（無料よりアクセスが速い＆容量大きい）、Googleフォト（容量無制限）だけでも、かなりお得感ありでした。あわせて、Google&amp;nbsp;Analyticsも移行してみましたが、企業用アカウントの方が情報が多くなったようです。&lt;/p&gt;
+&lt;p&gt;これからAI関連プロダクトも触れていく想定です。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="cloudflare"/><category term="独自ドメイン"/><category term="google workspace"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：独自ドメインを設定してみた</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-original-domain.html" rel="alternate"/><published>2025-12-15T23:00:00+09:00</published><updated>2025-12-28T11:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-15:/blog/github-pages-and-pelican-original-domain.html</id><summary type="html">&lt;p&gt;CloudFlareで独自ドメインを取得、作ったページにカスタムドメインを設定して運用できるところまでの手順メモ&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/ogpimage_original_domain.png" title="チャッピー作成"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;独自ドメインについて設定するつもりはまったくなかったのですが、Google&amp;nbsp;Workspaceに課金しようとしたところ、独自ドメインを持っている必要があったので、Blog用メインにドメインを確保してしまいました。早速設定してみましたので、関連情報をまとめておきます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;手順まとめ&lt;/h4&gt;
+&lt;p&gt;以下のような感じです。ドメインの獲得からGitHub Pagesへの設定・動作することの確認、設定後に必要なことをメモしてます。&lt;br&gt;&amp;nbsp;CloudFlareを使ってますが、別にCloudFlareじゃないサービスでドメイン取得してもほぼ同じとなります。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;（Cloudflareで）ドメイン取得&lt;/li&gt;
+&lt;li&gt;（CloudFlareに）&lt;span class="caps"&gt;DNS&lt;/span&gt;&amp;nbsp;Recoedsを設定&lt;/li&gt;
+&lt;li&gt;GitHub&amp;nbsp;Pagesのsettingでカスタムドメインを設定&lt;/li&gt;
+&lt;li&gt;継続的なデプロイに備えてpelican環境を設定&lt;/li&gt;
+&lt;li&gt;おまけ：検索と分析の設定も変更しておく&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="cloudflare"&gt;（Cloudflareで）ドメイン取得&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://s1m4ne.dev/blog/2025-05-01-set-custom-domain/"&gt;Cloudflare Registrar で GitHub Pages&amp;nbsp;に独自ドメインを設定する&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://qiita.com/khayama/items/fdda7884033b519aa1fe"&gt;Cloudflare Registrar でドメイン取得する&lt;/a&gt;&lt;br&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;手順メモ&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.cloudflare.com/products/registrar/"&gt;Cloudflare&lt;/a&gt;の場合、ドメインを検索してチェック（.devか.netで迷って.devとした）&lt;/li&gt;
+&lt;li&gt;住所とかクレジットカード情報を入れて購入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;なんか10年とか一気に購入できるっぽいですね。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="cloudflaredns-recoeds"&gt;（CloudFlareに）&lt;span class="caps"&gt;DNS&lt;/span&gt;&amp;nbsp;Recoedsを設定&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://s1m4ne.dev/blog/2025-05-01-set-custom-domain/"&gt;CloudflareでGitHub&amp;nbsp;Pagesのカスタムドメインを設定する&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zenn.dev/donchan922/articles/59c54fe659128294bb65"&gt;GitHub&amp;nbsp;Pagesに独自ドメインを設定する方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;主に&lt;a href="https://s1m4ne.dev/blog/2025-05-01-set-custom-domain/"&gt;1つめのリンク先&lt;/a&gt;に従って以下に従って作業してます。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;手順メモ&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;（Cloudflareの場合）ダッシュボード画面から購入したドメインを選択、&lt;span class="caps"&gt;DNS&lt;/span&gt;-&amp;gt;Recordsを選択し、画面からデータを追加&lt;ul&gt;
+&lt;li&gt;アドレス設定は&lt;a href="https://docs.github.com/ja/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site"&gt;こちらの情報（GitHubのドキュメント）&lt;/a&gt;を参考するのがよいかと&lt;/li&gt;
+&lt;li&gt;実際にはIPv6アドレス（AAAAレコード）も設定した方がよい感じもしますが、今のところ放置（未設定）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;AレコードにGitHubのドキュメント記載の&lt;code&gt;185.199.1XX.153&lt;/code&gt;を追加&lt;ul&gt;
+&lt;li&gt;Cloudflareだとナビゲーションありで、名前に@を設定すると対象のドメイン（今回はzatsumemo.dev）が登録される&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;あわせて、CNAMEの名前に&lt;code&gt;www&lt;/code&gt;、ターゲットに&lt;code&gt;(GitHubアカウント名).github.io&lt;/code&gt;を追加&lt;/li&gt;
+&lt;li&gt;Ploxy statusは「&lt;span class="caps"&gt;DNS&lt;/span&gt; Only」になるように設定&lt;br&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="CloudflareのDNSレコード設定" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/cloudflare_dns_records.png" title="最低限こう設定"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;登録後、すぐにGitHub&amp;nbsp;Pages側に設定できるのかな？と思いましたが、上記設定の30分後くらいで下記作業をしたところ、特に問題なく反映されてました。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="github-pagessetting"&gt;GitHub&amp;nbsp;Pagesのsettingでカスタムドメインを設定&lt;/h4&gt;
+&lt;p&gt;GitHubの「Setting-&amp;gt;Pages」からカスタムドメインを設定するだけです。ドメイン獲得・&lt;span class="caps"&gt;DNS&lt;/span&gt; Recordsの設定後、こちらの作業をすることで反映されました。&lt;br&gt;
+「&lt;span class="caps"&gt;DNS&lt;/span&gt; check successful」と出ればOKです。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GitHub Pagesへの設定結果" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/github_domain_setting.png" title="設定後にこうなればOK"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;ちなみに、以下のような動きをしてます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;設定時にGitHub&amp;nbsp;Pagesのリポジトリに&lt;code&gt;CNAME&lt;/code&gt;ファイルが追加される&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;zatsumemo.dev&lt;/code&gt;（対象のドメイン名）だけ書かれているデータです&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;この記事に記載の手順で上から進めた場合、次の手順を入れないとPelicanのデプロイ時にCNAMEが消えてしまうので注意しましょう。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="pelican"&gt;継続的なデプロイに備えてpelican環境を設定&lt;/h4&gt;
+&lt;p&gt;ghp-importだとしれっとCNAMEが消えちゃいますので、手元の環境で以下の手続きを入れておきます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pelicanプロジェクト環境の&lt;code&gt;content&lt;/code&gt;ディレクトリに&lt;code&gt;CNAME&lt;/code&gt;ファイルを追加&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;zatsumemo.dev&lt;/code&gt;（対象のドメイン名）だけテキストで書かれているデータを用意&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CNAMEを&lt;code&gt;output&lt;/code&gt;ディレクトリに入れるよう、&lt;code&gt;pelicanconf.py&lt;/code&gt;に以下の記述を追加&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;CNAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_2"&gt;おまけ：検索と分析の設定も変更しておく&lt;/h4&gt;
+&lt;p&gt;Google Search Console、Google Analyticsも独自ドメインに変えておいた方がよいでしょう（&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-search-and-analytics.html"&gt;参考手順&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;あわせて、robots.txtの&lt;code&gt;Sitemap&lt;/code&gt;設定等も見直ししておく必要があります。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Search Consoleのサイトマップ" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/sitemap_again.png" title="何もしてないのに動いた"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;あれ、今度はサイトマップがちゃんと読み込めた…？&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/><category term="Cloudflare"/><category term="独自ドメイン"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：pelicanconf.pyのメモ</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-pelicanconf.html" rel="alternate"/><published>2025-12-08T12:00:00+09:00</published><updated>2025-12-28T16:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-08:/blog/github-pages-and-pelican-pelicanconf.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelican利用時の設定ファイルの内容のポイントメモ（おまけ）&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pelicanconf.py&lt;/code&gt;の設定内容に対するメモです。自分が後で思い出すため程度の内容です。こちらの記載内容は、他の記事との重複あります。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="pelicanconfpy"&gt;pelicanconf.pyの設定メモ&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;基本情報&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以下のような感じです。半分くらいはquickstartで入る内容です。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+
+&lt;span class="n"&gt;AUTHOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;みずのり&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;雑メモ&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;SITEDESCRIPTION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;現場と酒好きなソフトウェア/システムをつくる人による雑なメモ&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;SITELOGO&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;logo.png&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;COPYRIGHT_YEAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;
+
+&lt;span class="c1"&gt;# DEFAULT_LANG = &amp;#39;Japanese&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DEFAULT_LANG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;en&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;TIMEZONE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Asia/Tokyo&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DATE_FORMATS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;en&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jpn&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;(&lt;/span&gt;&lt;span class="si"&gt;%a&lt;/span&gt;&lt;span class="s1"&gt;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;ポイントメモ&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SITEURL&lt;/code&gt;はpublishconf.py側で定義してるので、こっちは空欄&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SITELOGO&lt;/code&gt;は設定する必要があるかわかんない → （251228追記）&lt;a href="https://zatsumemo.dev/blog/github-pages-and-ogp-image-preview.html"&gt;こちら&lt;/a&gt;を参考&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;COPYRIGHT_YEAR&lt;/code&gt;は、本Blogだと一番下に表示されるやつに対応&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DEFAULT_LANG&lt;/code&gt;は、jp/Japaneseが使えなかったのでen設定、困ってない&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DATE_FORMATS&lt;/code&gt;を定義しないと日付表示がイマイチになる&lt;/li&gt;
+&lt;li&gt;元々&lt;code&gt;SITETITLE&lt;/code&gt;があったけど、&lt;code&gt;SITENAME&lt;/code&gt;との違いが分からんかったので、テーマのHTMLを見て&lt;code&gt;SITENAME&lt;/code&gt;に統一させて削除した&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SITESUBTITLE&lt;/code&gt;も同様に&lt;code&gt;SITEDESCRIPTION&lt;/code&gt;に統一させて削除した&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;カテゴリとタグの日本語変換&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;日本語のカテゴリやタグは追加するたびに設定にも反映させる運用としてます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;unidecode&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;unidecode&lt;/span&gt;
+&lt;span class="n"&gt;CATEGORY_REGEX_SUBSTITUTIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unidecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;雑メモ&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;zatsumemo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unidecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;読書&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;   &lt;span class="s2"&gt;&amp;quot;reading&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unidecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;環境構築メモ&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;setup&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[^\w\s-]&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;   &lt;span class="c1"&gt;# remove non-alphabetical/whitespace/&amp;#39;-&amp;#39; chars&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(?u)\A\s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;  &lt;span class="c1"&gt;# strip leading whitespace&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(?u)\s*\Z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;  &lt;span class="c1"&gt;# strip trailing whitespace&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[-\s]+&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;     &lt;span class="c1"&gt;# reduce multiple whitespace or &amp;#39;-&amp;#39; to single &amp;#39;-&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;TAG_REGEX_SUBSTITUTIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unidecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;雑メモ&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;zatsumemo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unidecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;実践ソフトウェアエンジニアリング&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sepa&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unidecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;翻訳&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;translation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[^\w\s-]&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;   &lt;span class="c1"&gt;# remove non-alphabetical/whitespace/&amp;#39;-&amp;#39; chars&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(?u)\A\s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;  &lt;span class="c1"&gt;# strip leading whitespace&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(?u)\s*\Z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;  &lt;span class="c1"&gt;# strip trailing whitespace&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[-\s]+&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;     &lt;span class="c1"&gt;# reduce multiple whitespace or &amp;#39;-&amp;#39; to single &amp;#39;-&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;スルーパスのファイル&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;STATIC_PATHS&lt;/code&gt;はcontentディレクトリの内容をそのままoutputへ出力してくれます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;images&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;favicon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;favicon-96x96.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;apple-touch-icon.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;web-app-manifest-192x192.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;logo.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;.htaccess&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;robots.txt&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;プラグインとサイトマップ設定&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;利用しているテーマで推奨していたものをそのまま使っている感じです。利用時にはpipで関連モジュールを入れる必要ありですね。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;sitemap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# generate sitemap document, see &amp;lt;https://www.sitemaps.org&amp;gt;&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;minchin.pelican.plugins.post_stats&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# generate post statistics&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;related_posts&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# find articles those share common tags&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;neighbors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# find next, previous article &lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;tipue_search&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# generate data for searching&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;SITEMAP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;format&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;priorities&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;articles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;indexes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;pages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;changefreqs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;articles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;monthly&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;indexes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;daily&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;pages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;monthly&amp;#39;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;プラグインの内容はこんな感じ？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sitemap&lt;/code&gt;：サイトマップ(sitemap.xml)の作成&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minchin.pelican.plugins.post_stats&lt;/code&gt;：記事最初の読み終わる時間目安の作成&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;related_posts&lt;/code&gt;：記事最後に出てくる関連記事の作成&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;neighbors&lt;/code&gt;：投稿順の前後記事の移動&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tipue_search&lt;/code&gt;：ヘッダの検索機能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考資料&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;まあ、&lt;a href="https://docs.getpelican.com/en/latest/settings.html"&gt;Pelican公式のドキュメント&lt;/a&gt;を読みましょう、ですね。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：検索と分析への対応（おためし程度）</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-search-and-analytics.html" rel="alternate"/><published>2025-12-07T19:00:00+09:00</published><updated>2025-12-07T19:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-07:/blog/github-pages-and-pelican-search-and-analytics.html</id><summary type="html">&lt;p&gt;GitHub PagesでつくったサイトのGoogle Search Console、Google&amp;nbsp;Analyticsへの登録メモ&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;作成したサイトに対して、Google Search ConsoleやGoogle Analyticsへの登録をしてみた際の手順のメモです。　　&lt;br&gt;&amp;nbsp;※（2025/12/07段階で）うまくいっているかはわかりません。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="googleanalytics"&gt;GoogleAnalyticsの設定&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;導入手順：&lt;a href="https://wacul-ai.com/blog/access-analysis/google-analytics-setting/ga-beginner/"&gt;Googleアナリティクスの導入・設定方法と活用のポイント【初心者向け】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;使い方：&lt;a href="https://wacul-ai.com/blog/access-analysis/google-analytics-method/what-is-google-analytics/"&gt;Googleアナリティクス（&lt;span class="caps"&gt;GA4&lt;/span&gt;）とは？導入方法から設定・使い方まで解説&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ほぼ、導入手順として紹介した&lt;a href="https://wacul-ai.com/blog/access-analysis/google-analytics-setting/ga-beginner/"&gt;こちら&lt;/a&gt;の通りです。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ざっくり手順メモ&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;（自分のGoogleアカウントで）Googleアナリティクスのアカウントを作成する&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wacul-ai.com/blog/access-analysis/google-analytics-setting/ga-beginner/"&gt;こちら&lt;/a&gt;を参考に各種登録を進める&lt;/li&gt;
+&lt;li&gt;最後に出てくるIDをコピー&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;publichconf.py&lt;/code&gt; にIDを追加&lt;/li&gt;
+&lt;li&gt;テンプレートを書き換える&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;publichconf.py&lt;/code&gt;には、以下のように取得したIDを追記します。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;GOOGLE_ANALYTICS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;獲得したID(例：G-XXX)&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;あわせて、テーマのディレクトリからテンプレート：&lt;code&gt;templates/include/ga.html&lt;/code&gt;を以下の記述に書き換えてます。&lt;br&gt;&amp;nbsp;※テーマによって変更せず動くこともあるかもしれません＋変更する対象ファイルは違うと思われますので注意。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;async&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dataLayer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dataLayer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;||&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[];&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;gtag&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="nx"&gt;dataLayer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;arguments&lt;/span&gt;&lt;span class="p"&gt;);}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;gtag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;js&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;gtag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;config&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{{ GOOGLE_ANALYTICS }}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;参考とした情報は以下。&lt;br&gt;
+- &lt;a href="https://qiita.com/y_catch/items/c16c738a720178b3e1e8#google-analytics%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B"&gt;WordpressからPelicanに移行した手順のメモ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;設定後に&lt;code&gt;make html&lt;/code&gt;もしくは&lt;code&gt;make publish&lt;/code&gt;を実施し、設定したIDで&lt;code&gt;output&lt;/code&gt;内のファイルを検索、IDが展開されていることをチェックするとよいでしょう。その上で、サイト公開後にGoogle&amp;nbsp;Analyticsを改めてチェックすると、設定が成功しているかがわかります。&lt;/p&gt;
+&lt;p&gt;（おまけ）Google Search&amp;nbsp;Consoleの設定後に、Analytics側と連携させるとよいみたいです。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="sitemapxml"&gt;サイトマップ（sitemap.xml）の作成&lt;/h4&gt;
+&lt;p&gt;プラグインを設定しておくことでサイトマップを作成できます。&lt;br&gt;&amp;nbsp;事前に&lt;code&gt;pip install pelican-sitemap&lt;/code&gt;を実施したうえで、&lt;code&gt;pelicanconf.py&lt;/code&gt;に以下を設定しておきます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;sitemap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# generate sitemap document, see &amp;lt;https://www.sitemaps.org&amp;gt;&lt;/span&gt;
+    &lt;span class="c1"&gt;# 他のプラグインがあれば入れる&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c1"&gt;# サイトマップの優先順位等を設定&lt;/span&gt;
+&lt;span class="n"&gt;SITEMAP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;format&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;priorities&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;articles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;indexes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;pages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;changefreqs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;articles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;monthly&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;indexes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;daily&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;pages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;monthly&amp;#39;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;make html&lt;/code&gt;もしくは&lt;code&gt;make publish&lt;/code&gt;を実行すると、&lt;code&gt;output&lt;/code&gt;ディレクトリに&lt;code&gt;sitemap.xml&lt;/code&gt;が作成されているはずです。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="google-search-console"&gt;Google Search&amp;nbsp;Consoleの設定とサイトマップの登録まで&lt;/h4&gt;
+&lt;p&gt;Google Search Consoleも設定してみてます。Google&amp;nbsp;Analyticsの登録が済んでいれば、すぐに完了するみたいです。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;robot.txt&lt;/code&gt;を用意して&lt;code&gt;output&lt;/code&gt;に含まれるよう設定&lt;/li&gt;
+&lt;li&gt;Google Search&amp;nbsp;Console登録：プロパティタイプ選択「URLプレフィックス」で自分のサイトURLを入れる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;robots.txt&lt;/code&gt;は、以下のように記載してます。&lt;code&gt;Sitemap&lt;/code&gt;に置き場所を指定しておくとよいらしいです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;# Allow crawling of all content&lt;/span&gt;
+User-agent: *
+Disallow: /images/
+
+Sitemap: https://mizunori.github.io/sitemap.xml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;output&lt;/code&gt;に含まれるように設定するためには、&lt;code&gt;pelicanconf.py&lt;/code&gt;に以下のように記述し、&lt;code&gt;content&lt;/code&gt;ディレクトリに該当ファイルを置くとよいです。スルーパスします。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;robots.txt&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Google Search&amp;nbsp;Console登録後、「インデックス作成-&amp;gt;サイトマップ」でサイトマップの位置を指定して登録しようと思いました、が…&lt;/p&gt;
+&lt;p&gt;&lt;img alt="取得できませんでした" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/failed_sitemap.png" title="失敗…？"&gt;&lt;/p&gt;
+&lt;p&gt;エラーが出てますね…（2025/12段階）&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;br&gt;
+- &lt;a href="https://mieru-ca.com/blog/how_to_write_robots-txt/"&gt;robots.txtの書き方・設定法（記述例のサンプル付き）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;サイトマップ登録時のメモ（なんか、登録されない…？）&lt;/h4&gt;
+&lt;p&gt;なお、以下のような内容を見つけてます。同じ現象ですね…&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://scr.marketing-wizard.biz/seo/search-console-xmlsitemap-cannot-fetch-error#block-ac4abf7cda544d2ab02c10b869acdfe1"&gt;Search&amp;nbsp;ConsoleでのXMLサイトマップ提出時「取得できませんでした・読み込めませんでした」エラーが発生&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;「取得できませんでした・読み込めませんでした」メッセージの本来ステータスは「保留中」。Search&amp;nbsp;Console側での表示エラー&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;とのこと。しばらく待ったらうまくいくらしいですが…？&lt;br&gt;&amp;nbsp;既に検索には出てきているので、まあよいでしょう。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：テーマ設定と見た目の対応</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-theme.html" rel="alternate"/><published>2025-12-07T15:00:00+09:00</published><updated>2025-12-07T15:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-07:/blog/github-pages-and-pelican-theme.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelican利用時のテーマ設定とfavicon等の見た目対応メモ&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;凝るとキリがないのですが、テーマを設定することで見た目や使い勝手を変えることもできます。テーマの設定方法、faviconなどの見た目に影響する部分に関してのメモを残しておきます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;テーマの設定方法&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;取得元、見た目の確認&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;テーマとその見た目は以下サイトで確認できます。そして選んだテーマを適用します。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/getpelican/pelican-themes"&gt;Pelicanテーマ一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pelicanthemes.com/"&gt;テーマのイメージ&lt;/a&gt;&lt;br&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;テーマ設定方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ざっと以下の手順となります。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;テーマのデータをDL（git&amp;nbsp;cloneでもよい）して、プロジェクトディレクトに置く&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pelicanconf.py&lt;/code&gt;にテーマのディレクトリを設定する&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以下のように、プロジェクトのrootディレクトリにテーマのデータ（theme_directory）を置いたとしましょう。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;repository_directory/
+|- content/
+  |- ...
+&lt;span class="hll"&gt;|- theme_directory/
+&lt;/span&gt;&lt;span class="hll"&gt;  |- ...
+&lt;/span&gt;|- pelicanconf.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;pelicanconf.py&lt;/code&gt;に以下を追記します。あとは、&lt;code&gt;make html&lt;/code&gt;などの手順を実施すればOK。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme_directory&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="blog"&gt;（余談）本Blogのテーマ設定時の手順&lt;/h4&gt;
+&lt;p&gt;このBlogのテーマを設定した際にあわせて実施する内容をメモしておきます。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;設定したテーマ&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/vuquangtrong/simplify-theme"&gt;simplify-theme&lt;/a&gt; を利用してます。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;テーマに関するモジュール（プラグイン用）のインストール&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;テーマのディレクトリに&lt;code&gt;repuirement.txt&lt;/code&gt;があったので、pipのインストールを実施（テーマディレクトリに移動して以下コマンド実施）。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;pip install -r ./repuirement.txt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;テーマのサンプルをcontentに展開して確認&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;テーマのディレクトリ内に&lt;a href="https://github.com/vuquangtrong/simplify-theme/tree/master/build"&gt;buildディレクトリ&lt;/a&gt;が含まれておりました。&lt;code&gt;contet&lt;/code&gt;に記事の書き方のサンプルがありましたので、見栄えや書き方の確認をしてます。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pelicanconf.pyのサンプルを取り込む&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;同じく&lt;a href="https://github.com/vuquangtrong/simplify-theme/tree/master/build"&gt;buildディレクトリ&lt;/a&gt;に、&lt;code&gt;pelicanconf.py&lt;/code&gt;にプラグイン等のサンプルも記載されていたので、自分の設定に取り込んでます。&lt;br&gt;
+※プラグインは、前段で実施したモジュールのインストールが前提となっているようでした。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;その他、テーマに対して実施した調整&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;日付のフォーマットを設定（後述）&lt;/li&gt;
+&lt;li&gt;余計なリンク削除（linkedInとか）&lt;/li&gt;
+&lt;li&gt;一部文字色の変更&lt;/li&gt;
+&lt;li&gt;タイトル（雑メモ）からTOPへのリンクを可能として、Homeのリンクを削除&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_2"&gt;見栄えの調整（日付フォーマット）&lt;/h4&gt;
+&lt;p&gt;デフォルトだと時刻表記が英語ベースで見づらかったので修正してます。この修正は&lt;code&gt;pelicanconf.py&lt;/code&gt;で可能です。以下のように設定してます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;DEFAULT_LANG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;en&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DATE_FORMATS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;# &amp;#39;en&amp;#39;: (&amp;#39;usa&amp;#39;,&amp;#39;%a, %d %b %Y&amp;#39;),&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;en&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jpn&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;(&lt;/span&gt;&lt;span class="si"&gt;%a&lt;/span&gt;&lt;span class="s1"&gt;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;なお、デフォルトの言語はjpもしくはJapaneseにしようと思ったのですが、&lt;code&gt;Docutils has no localization for 'jp'. Using 'en' instead.&lt;/code&gt;といったエラーが出たため、enをベースとしてます。まあ、この設定で困ってません。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="favicon"&gt;favicon設定（おためし程度）&lt;/h4&gt;
+&lt;p&gt;ブラウザのタイトルの左側などのロゴアイコン用のfaviconも雑に作ってます。以下手順ですね。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ベースの画像を作成（&lt;span class="caps"&gt;GIMP&lt;/span&gt;）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;512x512のサイズでベース画像を作成、PNG形式とします。GIMPなんて久しぶりに使う感じ…&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ロゴのベース作成" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/logo_create.png" title="ダークモードと双方に対応した色使い（たぶん）"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一括変換を実施&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://realfavicongenerator.net/"&gt;Favicon Generator. For real.&lt;/a&gt;で一括変換しました。作成した512x512のPNGファイルを対象に作成します。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ロゴデータの配置とpelicanconf.pyへの設定記述&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ロゴデータをcontentの直下に配置します。生成された以下のファイルを対象としました（適切かは不明）。&lt;code&gt;favicon.ico&lt;/code&gt;だけは必須でしょう…&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;favicon.ico&lt;/li&gt;
+&lt;li&gt;favicon-96x96.png&lt;/li&gt;
+&lt;li&gt;apple-touch-icon.png&lt;/li&gt;
+&lt;li&gt;web-app-manifest-192x192.png&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;あわせて、&lt;code&gt;output&lt;/code&gt;ディレクトリに反映されるよう、&lt;code&gt;pelicanconf.py&lt;/code&gt;に以下のように記載してます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;images&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="hll"&gt;    &lt;span class="s1"&gt;&amp;#39;favicon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;span class="hll"&gt;    &lt;span class="s1"&gt;&amp;#39;favicon-96x96.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;span class="hll"&gt;    &lt;span class="s1"&gt;&amp;#39;apple-touch-icon.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;span class="hll"&gt;    &lt;span class="s1"&gt;&amp;#39;web-app-manifest-192x192.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;    &lt;span class="s1"&gt;&amp;#39;logo.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;.htaccess&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;robots.txt&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;あわせて、テーマのディレクトリにあった&lt;code&gt;templates/base.html&lt;/code&gt;のアイコン記載に以下のような追記をしてます。&lt;br&gt;&amp;nbsp;※各自のテーマで変更箇所は異なるかもです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt; &lt;span class="na"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;shortcut icon&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}/favicon.ico&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;image/x-icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="hll"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt; &lt;span class="na"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;apple-touch-icon&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}/apple-touch-icon.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;span class="hll"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt; &lt;span class="na"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;icon&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;image/png&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;sizes&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;96x96&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}/favicon-96x96.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;span class="hll"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt; &lt;span class="na"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;icon&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}/web-app-manifest-192x192.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;ひとまず、上記としてます。テストはしてないので、うまく反映されない場合もあるかもです。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://sdesignlabo.com/web/favicon/"&gt;ファビコン（favicon）のサイズ一覧と作り方&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://realfavicongenerator.net/"&gt;Favicon Generator. For&amp;nbsp;real.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：記事の書き方メモ、日本語利用時の注意点</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-writing.html" rel="alternate"/><published>2025-12-05T15:00:00+09:00</published><updated>2025-12-07T10:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-05:/blog/github-pages-and-pelican-blog-writing.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanで記事を書く際に知っておくポイントを雑多に記載&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;記事の公開ができる状況となったとしても、URL名やリンクの付与方法など気になる点が多数発生します。カテゴリやタグの日本語対応の方法なども含めて、雑多に書き出しておきます。&lt;br&gt;&amp;nbsp;※個人で見返すのがメインだったりしてます&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="tips"&gt;記事作成時のTIPS、ちょっとした書き方&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Blog内リンク&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;記事内のリンクや画像のリンクはマークダウン形式（リンクだと&lt;code&gt;[表示の文字列](URL)&lt;/code&gt;）で付与すればよいのですが、Blog内の別記事へのリンクについては、以下のような書き方があります。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[&lt;span class="nt"&gt;記事と同一ディレクトリのリンク&lt;/span&gt;](&lt;span class="na"&gt;{filename}./2512-0_シリーズまとめ.md&lt;/span&gt;)
+![&lt;span class="nt"&gt;rootのロゴ画像&lt;/span&gt;](&lt;span class="na"&gt;{static}/logo.png&lt;/span&gt;)
+![&lt;span class="nt"&gt;記事と同一ディレクトリのロゴ画像&lt;/span&gt;](&lt;span class="na"&gt;{static}logo_samedir.png&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;以下のような表示となります。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;記事と同一ディレクトリのリンク&lt;/a&gt;&lt;br&gt;
+&lt;img alt="rootのロゴ画像" src="https://zatsumemo.dev/logo.png"&gt;&lt;br&gt;
+&lt;img alt="記事と同一ディレクトリのロゴ画像" src="https://zatsumemo.dev/blog/setup/pelican/logo_samedir.png"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;ちなみに、ディレクト構造はこんな感じ（関連しそうな部分だけ記載してます）。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;repository_directory/
+|- content/
+  |- blog/
+    |- setup/
+      |- pelican/
+&lt;span class="hll"&gt;        |- 2512-0_シリーズまとめ.md
+&lt;/span&gt;        |- 2512-4_記事の書き方.md ※この記事のファイルです
+&lt;span class="hll"&gt;        |- logo_samedir.png
+&lt;/span&gt;&lt;span class="hll"&gt;|- logo.png
+&lt;/span&gt;|- pelicanconf.py
+|- publishconf.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;まあ、&lt;code&gt;filename&lt;/code&gt;と&lt;code&gt;static&lt;/code&gt;くらいを使っていれば十分じゃないかなと。&lt;/p&gt;
+&lt;p&gt;記事タイトルでリンク付与する方法もあったはずですが、タイトルは一度作成した後にしれっと変更しちゃう可能性もあります。少なくとも自分は使わないため、割愛します。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;コードブロックとハイライト&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以下のようにコードブロックと、MarkdownやPythonのハイライト指定、特定行のハイライト指定ができます。&lt;br&gt;&amp;nbsp;※他にもコードブロック表現はありますが、割愛します。&lt;/p&gt;
+&lt;p&gt;Markdownの場合&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:::md hl_lines=&amp;quot;4 6&amp;quot;
+&lt;span class="gu"&gt;## 箇条書きの例&lt;/span&gt;
+
+&lt;span class="hll"&gt;以下に &lt;span class="gs"&gt;**箇条書き**&lt;/span&gt; を記載。
+&lt;/span&gt;
+&lt;span class="hll"&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;箇条書き1
+&lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;箇条書き2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pythonの場合&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="url"&gt;メタデータ（タイトル、記事のURL設定など）&lt;/h4&gt;
+&lt;p&gt;mdファイルの最初に必ず、記事の関連情報を入れます。基本はコピペ→修正ですね。 &lt;br&gt;&amp;nbsp;例えば、この記事では以下のように記述しています。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Title: GitHub Pages＋PelicanでつくるBlog：記事の書き方メモ、日本語利用時の注意点
+Slug: github-pages-and-pelican-blog-writing
+Summary: GitHub PagesとPelicanで記事を書く際に知っておくポイントを雑多に記載
+Author: みずのり
+Date: 2025-12-05 15:00
+Modified: 2025-12-07 10:00
+Category: 環境構築メモ
+Tags: GitHub, Pelican
+TOC: show
+status: published
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;なんとなくわかるようなものは除いて、ポイントだけ紹介しておきます。 &lt;br&gt;&amp;nbsp;テーマによって使える・使えないがあるかもしれないので注意してください。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Slug&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;こちらがない場合、TitleをベースにHTMLファイル名（つまりはURL）が決まりますが、日本語から自動変換した文字列はイマイチです。なので、こちらでHTMLの名前を入れておきましょう。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;TOC&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;右側の目次リンクが作られます。いらなければ行ごと消し去ればよいです。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;status&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;記載がなければpublished（公開）扱いとなります。このstatusをdraftにすると、作成中という扱いでHTMLが作成されない状態になったりします。他にもhiddenなどもあります。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考文献&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://takayama-rado.com/articles/pelican_write_articles_0.html"&gt;静的サイトジェネレータPelicanの記事ファイルの書き方&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.getpelican.com/en/latest/content.html"&gt;Pelican公式情報&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;カテゴリ、タグの日本語対応&lt;/h4&gt;
+&lt;p&gt;Titleが日本語の場合にSlugを使用することを記載しましたが、カテゴリやタグに日本語を使用する際にも気持ち悪いURLになるので、用語の置き換え対応を入れておいたほうが良いでしょう。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pelicanconf.py&lt;/code&gt;に以下のような記述を追加して対応します。&lt;br&gt;&amp;nbsp;下記はタグの例、カテゴリには&lt;code&gt;CATEGORY_REGEX_SUBSTITUTIONS&lt;/code&gt;を適用します。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;unidecode&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;unidecode&lt;/span&gt;
+
+&lt;span class="n"&gt;TAG_REGEX_SUBSTITUTIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unidecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;雑メモ&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;zatsumemo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unidecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;翻訳&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;translation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[^\w\s-]&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;   &lt;span class="c1"&gt;# remove non-alphabetical/whitespace/&amp;#39;-&amp;#39; chars&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(?u)\A\s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;  &lt;span class="c1"&gt;# strip leading whitespace&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(?u)\s*\Z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;  &lt;span class="c1"&gt;# strip trailing whitespace&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[-\s]+&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;     &lt;span class="c1"&gt;# reduce multiple whitespace or &amp;#39;-&amp;#39; to single &amp;#39;-&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;上記で日本語のタグ名を指定した文字列に置き換えて、URLにすることができます。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考文献&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://knuu.github.io/pelican-utf8-substitution.html"&gt;pelican(python3)で日本語のカテゴリやタグごとのページのurlを変更する方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上記リンクで使用している&lt;code&gt;TAG_SUBSTITUTIONS&lt;/code&gt;などは、&lt;code&gt;TAG_REGEX_SUBSTITUTIONS&lt;/code&gt;などに置き換えて使用してください（2025/12段階）。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：Blogの運用管理方法の一例</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-management.html" rel="alternate"/><published>2025-12-05T12:00:00+09:00</published><updated>2025-12-05T12:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-05:/blog/github-pages-and-pelican-blog-management.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanでの運用向けのディレクトリ構造とリポジトリ・ブランチ管理方法&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;実際はテーマ設定なども行ったうえでの手順となりますが、正式に日々の記事作成の運用をする場合には構成を調整した方が扱いやすいでしょう。本Blogで実施している運用手続きを（主に自分のために）メモしておきます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="github-pages"&gt;GitHub&amp;nbsp;Pages（無料版）の制約&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://docs.github.com/ja/get-started/learning-about-github/githubs-plans"&gt;GitHubのFreeプラン&lt;/a&gt;では、GitHub Pagesを作るためにはpublicリポジトリにする必要があります。&lt;br&gt;&amp;nbsp;とはいえ、Pelicanのプロジェクトの余分なところまで公開する必要が無いとは思います。ここでghp-importを活用して、2つのリポジトリでBlogの運用環境を構築してます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;運用向けのリポジトリ・ブランチ管理方法&lt;/h4&gt;
+&lt;p&gt;以下、2つのリポジトリを利用してます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mizunori.github.io&lt;/code&gt; ：Pages公開用、publicでBlogの中身（output部分）しか置かない&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blog_zatsu&lt;/code&gt;：Pelicanプロジェクトごと管理、privateで扱う&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;blog_zatsu&lt;/code&gt;リポジトリでローカルでのBlogの確認まで実施、ghp-importを利用してoutputディレクトリの中身だけをPages公開用の&lt;code&gt;mizunori.github.io&lt;/code&gt;リポジトリへpushします。&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img alt="運用時のPagesデプロイ" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/blog_operation_env.png" title="pushしたら公開へ"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="pages"&gt;Pagesのデプロイ時のコマンドメモ&lt;/h4&gt;
+&lt;p&gt;以上で、&lt;code&gt;blog_zatsu&lt;/code&gt;リポジトリ内で記事作成が実施できます。Blog作成時には&lt;code&gt;make devserver&lt;/code&gt;で確認しながら、準備完了後は以下のコマンドで公開します。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;make publish&lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;ghp-import output&lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;git push -f https://github.com/XXXX/XXXX.github.io.git gh-pages:deploy&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;ghp-importを使って公開用のリポジトリを指定してpushしてます。最後のコマンドのXXXXの部分、deployと書いているブランチ名は各自で変えてください。&lt;/p&gt;
+&lt;p&gt;公開時にはいちおう&lt;code&gt;make publish&lt;/code&gt;を使用してます。ちなみに&lt;code&gt;make html&lt;/code&gt;は「pelicanconf.py」を使っていて、&lt;code&gt;make publish&lt;/code&gt;は「publishconf.py」を使ってます。&lt;br&gt;
+自分の環境において「publishconf.py」は、「pelicanconf.py」の処理に加えてRSSとかフィードに関わるデータを作っているみたいでした。&lt;br&gt;&amp;nbsp;（RSS興味ないので、&lt;code&gt;make html&lt;/code&gt;で公開しちゃっても問題ないと思ってます）&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_2"&gt;運用向けのディレクトリ構造&lt;/h4&gt;
+&lt;p&gt;オマケみたいなもんです。&lt;br&gt;&amp;nbsp;contentディレクトリに、必要なデータを置いてblogディレクトリでカテゴリ名等で区切って記事管理しましょう、くらいです。pagesディレクトリは、aboutみたいな固定の内容を置く感じですね。&lt;/p&gt;
+&lt;p&gt;この辺はテーマによって多少変わりますので、テーマのサンプルを見ながらcontentディレクトリを調整するのがよいでしょう。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;repository_directory/
+|- content/
+  |- blog/
+    |- category_name1/
+    |- category_name2/
+    |- ...
+  |- pages/
+    |- about/
+    |- ...
+  |- .htaccess
+  |- favicon.ico
+  |- robots.txt
+|- output/
+  |- ...
+|- theme_dir/
+  |- ...
+|- Makefile
+| pelicanconf.py
+| publishconf.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：とりあえずな記事の公開（デプロイ）</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-deploy.html" rel="alternate"/><published>2025-12-01T16:00:00+09:00</published><updated>2025-12-01T16:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-01:/blog/github-pages-and-pelican-deploy.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanでの記事の公開&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;作成したBlogのGitHub Pagesでの公開方法を紹介します。&lt;br&gt;
+&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-setup-at-windows11.html"&gt;セットアップ&lt;/a&gt;を済ませ、テストページの確認ができる状況からスタートします。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;とりあえずな記事の公開（デプロイ）方法&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;デプロイ用ブランチへのpush&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-setup-at-windows11.html"&gt;セットアップ方法&lt;/a&gt;にて、動作確認まで完了した状況で、以下のようにコマンド実行をすると、&lt;code&gt;deploy&lt;/code&gt;ブランチに&lt;code&gt;output&lt;/code&gt;ディレクトリの中身がpushされます。&lt;br&gt;&amp;nbsp;※deployブランチを使っていない前提です&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;ghp-import output&lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;git push -f origin gh-pages:deploy&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;実際、どんな動きをしているか？は、&lt;a href="#ghp-import"&gt;こちら&lt;/a&gt;を参考のこと。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GitHub&amp;nbsp;Pagesの設定&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;GitHub&amp;nbsp;Pagesの設定にて、pushした先のブランチとディレクトリを指定するとページが公開されます。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pagesのデプロイ場所設定" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/github_deploy.png" title="Saveですぐにデプロイ、動作が気になる人はActionsを見よう"&gt;&lt;/p&gt;
+&lt;p&gt;ちなみに関連情報。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;該当ディレクトリにpush、もしくはブランチ・ディレクトリの設定をすると、GitHub&amp;nbsp;Actionsが動作してます。デプロイ失敗したような場合には&lt;code&gt;Actions&lt;/code&gt;から状況が確認できます&lt;/li&gt;
+&lt;li&gt;GitHub&amp;nbsp;Pagesのディレクトリ設定は、Pelicanデフォルトの「output」が指定できません。なので、outputの中身だけをpushするような手続きとなります&lt;/li&gt;
+&lt;li&gt;HTMLの出力ディレクトリを&lt;code&gt;/docs&lt;/code&gt;にすると、環境全体のpushでうまく連携できるっぽい。&lt;code&gt;jekyll&lt;/code&gt;の利用時の設定と思われます&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="ghp-import"&gt;ghp-importの動作&lt;/h4&gt;
+&lt;p&gt;今回記載した手順で各コマンドを実施した場合、（気持ち悪いですが）以下のように別ブランチにoutputの中身だけ書き込むことになります。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="各ブランチのディレクトリ構成" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/ghp_process.png" title="別ブランチでディレクトリ構造違う"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;各コマンドは以下のように動作しているようです。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ghp-import output&lt;/code&gt;：push用のディレクトリ指定（例：output）に加え、リポジトリ/ブランチ向けにcommitまで完了させる&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push -f origin gh-pages:deploy&lt;/code&gt;前のコマンドで指定したoutputディレクトリを対象として、deployブランチにpushする&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;なお、&lt;code&gt;git push -f https://github.com/アカウント名/アカウント名.github.io.git gh-pages:deploy&lt;/code&gt;というように、リポジトリを指定してpushすることも可能です。&lt;/p&gt;
+&lt;p&gt;つまり、Blogの作成用のリポジトリと公開用のリポジトリは分けることが可能となります。&lt;br&gt;&amp;nbsp;※このBlogもリポジトリを分けて運用してます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：セットアップ方法＠Windows11</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-setup-at-windows11.html" rel="alternate"/><published>2025-12-01T13:00:00+09:00</published><updated>2025-12-01T13:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-01:/blog/github-pages-and-pelican-setup-at-windows11.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanのセットアップ方法：公開前の準備、ローカルでの確認まで&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;まず、セットアップ方法を雑メモとしてまとめておきます。Windows派のセットアップ方法です。&lt;br&gt;
+自分が再度最初からセットアップするなら、記載するように進めるとよいかなー、という手順です。&lt;br&gt;&amp;nbsp;「公開前の準備・動作確認までの手順」として紹介します。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;前提とバージョン&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;前提&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;コマンドラインでgitは使える、ブランチなどの基本用語がわかる&lt;/li&gt;
+&lt;li&gt;pythonやpipも実行できる&amp;nbsp;※gitやpythonのセットアップの説明は除外します&lt;/li&gt;
+&lt;li&gt;GitHubのアカウントも獲得している&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;（参考）バージョン&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows11　※&lt;a href="#windows環境へのmakeのセットアップ"&gt;Windowsでmakeを使うにはインストールが必要&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;make&amp;nbsp;3.81&lt;/li&gt;
+&lt;li&gt;python&amp;nbsp;3.13.9&lt;/li&gt;
+&lt;li&gt;Pelican 4.11.0&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id="github-pages"&gt;Github&amp;nbsp;Pagesの準備と簡易な動作チェック&lt;/h4&gt;
+&lt;p&gt;まず、GitHub&amp;nbsp;Pagesで公開までの手順を試してみましょう。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.github.com/ja/pages"&gt;公式サイト&lt;/a&gt;を見るのが無難です&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.github.com/ja/pages/getting-started-with-github-pages/creating-a-github-pages-site"&gt;GitHub Pages サイトを作成する&lt;/a&gt;&amp;nbsp;の内容を辿ることで簡単に動作確認まで確認できます&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一番楽に作れる構成としては、&lt;code&gt;アカウント名.github.io&lt;/code&gt;（自分はユーザー名mizunoriなので、&lt;code&gt;mizunori.github.io&lt;/code&gt;）という名前のリポジトリを作成することです。&lt;br&gt;
+参考情報を辿って公開するリポジトリのブランチとディレクトリを準備することで、リポジトリ名がURLとなる形式で公開されます。&lt;br&gt;&amp;nbsp;上記のmizunoriアカウントの場合、&lt;code&gt;https://mizunori.github.io&lt;/code&gt; が公開アドレスになります。ブログ作成用のリポジトリは&lt;code&gt;https://github.com/mizunori/mizunori.github.io&lt;/code&gt;となります。&lt;br&gt;&amp;nbsp;※&lt;code&gt;mizunori&lt;/code&gt;部分は各自のアカウント名となります&lt;/p&gt;
+&lt;p&gt;動作確認の例として、mainブランチのREADME.mdに以下のように記載してみます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;# mizunori.test&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;公開先をmainブランチのrootに設定すると、以下のように公開されます。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="First Step" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/firststep.png" title="公開されない場合、GitHub Actionsの動きをチェックしてみましょう"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="windowsmake"&gt;Windows環境へのmakeのセットアップ&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;参考情報&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://massie0414.com/index.php/windows/8298/"&gt;make：Windows環境にインストールして簡単なビルドをしてみる&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Windowsではmakeを使う場合にはインストールが必要となります。  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pathへの追加&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;インストール後に、makeのインストールされたディレクトリを環境変数に追加すると動く&lt;br&gt;
+Windowsの検索で「システム環境変数の編集」から辿る画面で、「Path」にmakeをインストールしたパスを追加します。&lt;br&gt;&amp;nbsp;※何も考えないで動かしたいなら、「システム環境変数」への追加でよいです。&lt;/p&gt;
+&lt;p&gt;自分の場合はパスが&lt;code&gt;C:\GnuWin32\bin\bin&lt;/code&gt;となっておりました。&lt;code&gt;make.exe&lt;/code&gt;のあるディレクトリが対象となります。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;動作確認&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;登録後、pwshなりコマンドプロンプトで、バージョン確認のコマンド実行に対して応答を確認できればOK。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;make --version&lt;/span&gt;
+GNU Make 3.81
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;おまけ&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;上記インストールでうまくいかなかった、makeが使えないといった状況でも、Pelicanのコマンドだけでも同等のことは可能となります。（&lt;a href="#（参考）makeを使わない生成コマンド"&gt;参考&lt;/a&gt;）&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="pelican"&gt;Pelicanを含めた必要なモジュールのインストールと環境作成&lt;/h4&gt;
+&lt;p&gt;以下の環境作成は、&lt;a href="#github-pagesの準備と簡易な動作チェック"&gt;Github Pagesの準備と簡易な動作チェック&lt;/a&gt;で作成したリポジトリで構築するとわかりやすいです。&lt;br&gt;&amp;nbsp;まずはPelicanのインストールを行います。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://qiita.com/saira/items/71faa202efb4320cb41d"&gt;Python製 Pelican&amp;nbsp;を使ってサクッとブログを公開する&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.getpelican.com/en/latest/index.html"&gt;Pelicanドキュメント&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;インストール&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以下コマンドで3つのモジュールをインストールします。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;pip install pelican markdown ghp-import&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;各モジュールの概要&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pelican：今回のメイン&lt;/li&gt;
+&lt;li&gt;markdown：マークダウンで記事を作成するため、インストール対象に入れます&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pypi.org/project/ghp-import/"&gt;ghp-import&lt;/a&gt;： &lt;strong&gt;Copy your docs directly to the gh-pages branch.&lt;/strong&gt; という説明あり&lt;br&gt;
+　特定のディレクトリを別のブランチ（別リポジトリも可）へpushするために使います&amp;nbsp;※後のデプロイ時に利用します&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Blog環境作成（quickstart）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Blogをつくりたいディレクトリで、以下コマンドを実行します。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;pelican-quickstart&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;以下それぞれに回答していきます。&lt;br&gt;&amp;nbsp;記載の内容は今回のBlog作成で入力した内容です。ここで多少違った内容を入れても、あとで設定ファイルで変更可能ですので、気軽に入れておく感じでよいです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Where do you want to create your new web site? [.]&lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;What will be the title of this web site? 雑メモ&lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Who will be the author of this web site? みずのり&lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;What will be the default language of this web site? [Japanese] &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to specify a URL prefix? e.g., https://example.com   (Y/n) n&lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to enable article pagination? (Y/n) &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;How many articles per page do you want? [10] &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;What is your time zone? [Asia/Tokyo] &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to generate a tasks.py/Makefile to automate generation and publishing? (Y/n) &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to upload your website using FTP? (y/N) &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to upload your website using SSH? (y/N) &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to upload your website using Dropbox? (y/N) &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to upload your website using S3? (y/N) &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to upload your website using Rackspace Cloud Files? (y/N) &lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Do you want to upload your website using GitHub Pages? (y/N) y&lt;/span&gt;
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Is this your personal page (username.github.io)? (y/N) y&lt;/span&gt;
+
+Done. Your new project is available at ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_2"&gt;記事の作成とテストページ生成&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;テスト記事の作成&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;quickstartで作成された&lt;code&gt;content&lt;/code&gt;ディレクトリに任意のマークダウンファイルを作成します。&lt;br&gt;&amp;nbsp;例えば&lt;code&gt;test.md&lt;/code&gt;ファイルを以下のようにつくります。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Title: テストページですよ
+Date: 2025-11-22
+Category: テスト
+Tags: テスト, Pelican
+Slug: Test-Page
+Authors: みずのり
+Summary: テストページが動くところまで見ましょう
+TOC: show
+
+&lt;span class="gu"&gt;## テストページ用の投稿&lt;/span&gt;
+
+&lt;span class="gs"&gt;**テストページ**&lt;/span&gt;ですよ。
+
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;箇条書きも
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;こんな感じ
+
+&lt;span class="gu"&gt;## 表の例&lt;/span&gt;
+
+|表|カラム|タイトル|
+|---|---|---|
+|テスト1|テスト2|テスト3|
+
+&lt;span class="gu"&gt;## mdのコードブロック&lt;/span&gt;
+
+    :::md
+    ## mdのコードブロックです
+
+    サンプル用の見た目はこんな感じ
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;:::pythonとすると、pythonコードのハイライトが適用されます
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;※記事の書き方で困ったら、&lt;a href="https://docs.getpelican.com/en/latest/content.html"&gt;Pelicanドキュメント&lt;/a&gt;で確認するのがよいでしょう&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ローカルでのテストページ生成&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;mdファイルが準備できたら、テストページを作成してみます。&lt;br&gt;
+&lt;code&gt;pelicanconf.py&lt;/code&gt; の存在するルートディレクトリで、以下のコマンドを実行することで&lt;code&gt;output&lt;/code&gt;ディレクトリにHTMLが作成されます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;make html&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;続いて以下のコマンドでブラウザでの動作確認が可能となります。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;make serve&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;デフォルトでは、&lt;code&gt;http://localhost:8000/&lt;/code&gt; もしくは&lt;code&gt;http://127.0.0.1:8000/&lt;/code&gt;にて確認できます。&lt;br&gt;&amp;nbsp;先ほどの&lt;code&gt;test.md&lt;/code&gt;だけ作成した状況では、以下のように表示されます。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Test Page" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/testpage.png" title="タイトルとかは手順と違いますが"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;記事を書きながら更新結果を見る方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;実際にBlog記事を書く際には細かくチェックしたい状況となります。以下コマンドで、プロジェクトの中身が変更するたびにブラウザ側を更新させることが可能です。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;make devserver&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;見た目などはテーマ設定などで対処することになります。&lt;br&gt;
+※テーマの調整もそれはそれで大変ですが…&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="make"&gt;（参考）makeを使わない生成コマンド&lt;/h4&gt;
+&lt;p&gt;なんかmakeがうまく動かない？という場合でも、pelicanのコマンドで同等のことが可能です。&lt;br&gt;
+&lt;code&gt;pelicanconf.py&lt;/code&gt; の存在するルートディレクトリで以下を実行すると、HTMLが作成されます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;pelican content -s pelicanconf.py&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;続いて以下のコマンドでブラウザでの動作確認が可能です。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;pelican --autoreload --listen&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;この辺も、&lt;a href="https://docs.getpelican.com/en/latest/publish.html"&gt;Pelicanのドキュメント&lt;/a&gt;を参考とするのがよいでしょう。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：シリーズまとめ</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html" rel="alternate"/><published>2025-12-01T12:00:00+09:00</published><updated>2025-12-28T16:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-01:/blog/github-pages-and-pelican-summary.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanでBlogをつくった方法のリンクをまとめておきます&lt;/p&gt;</summary><content type="html">&lt;p&gt;本BlogはGitHub PagesとPelicanでつくった構成となっております。&lt;br&gt;
+（ほぼ自分用として）セットアップ方法やデプロイ方法をまとめておきます。&lt;br&gt;
+※全体を通しての注意事項：雑メモレベルなので、各手順はそのままでは動かない可能性があります&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;目次リンク&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-setup-at-windows11.html"&gt;セットアップ方法＠Windows11&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-deploy.html"&gt;とりあえずな記事の公開（デプロイ）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-management.html"&gt;Blogの運用管理方法の一例&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-writing.html"&gt;記事の書き方メモ、日本語利用時の注意点&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-theme.html"&gt;テーマ設定と見た目の対応&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-search-and-analytics.html"&gt;検索と分析への対応（おためし程度）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-pelicanconf.html"&gt;pelicanconf.pyのメモ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-original-domain.html"&gt;独自ドメインを設定してみた&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/github-pages-and-ogp-image-preview.html"&gt;アイキャッチ・プレビュー画像の設定（OGPのイメージ設定）&lt;/a&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id="_2"&gt;（参考）選定理由メモ&lt;/h4&gt;
+&lt;p&gt;本Blogは以下のような流れから、表題の構成を選んでます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;今までの環境（&lt;a href="http://blog.amateur-factory.jp/"&gt;どしろうと製作所：WebLog&lt;/a&gt;）を移行したい&lt;/li&gt;
+&lt;li&gt;VSCode上でテキストやマークダウンで書いてBlogにしたい&lt;/li&gt;
+&lt;li&gt;無料で扱える仕組みがよい　→　この段階でほぼGitHub&amp;nbsp;Pages決定へ&lt;/li&gt;
+&lt;li&gt;Rubyベース（jekyll）よりPythonベース（Pelican）の方が扱いやすい　→&amp;nbsp;Pelicanへ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+（つぶやき）書き方を覚えながらちょっとした記事書こうとしたら、規模がソコソコでかくなってもうた_(:3 」∠)_&lt;br&gt;&amp;nbsp;雑メモなので、後半に行くほど雑に書いてます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry></feed>
