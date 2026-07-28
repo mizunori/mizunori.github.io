@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-management.html" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-12-05 12:00:00+09:00" />
-<meta property="article:modified_time" content="" />
+<meta property="article:modified_time" content="2026-07-28 10:00:00+09:00" />
 <meta property="article:author" content="https://zatsumemo.dev/author/mizunori.html">
 <meta property="article:section" content="環境構築メモ" />
 	<meta property="article:tag" content="GitHub" />
@@ -217,10 +217,10 @@ ga('send', 'pageview');
                 <span class="card-link text-success">
                     <span class="post-date" title="Post date">2025-12-05(金)</span>
                     <span class="text-info modified-date" title="Updated date">
-                            2025-12-05(金)
+                            2026-07-28(火)
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~55 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~68 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="https://zatsumemo.dev/category/setup.html">環境構築メモ</a>
@@ -273,6 +273,16 @@ ga('send', 'pageview');
 <p>ghp-importを使って公開用のリポジトリを指定してpushしてます。最後のコマンドのXXXXの部分、deployと書いているブランチ名は各自で変えてください。</p>
 <p>公開時にはいちおう<code>make publish</code>を使用してます。ちなみに<code>make html</code>は「pelicanconf.py」を使っていて、<code>make publish</code>は「publishconf.py」を使ってます。<br>
 自分の環境において「publishconf.py」は、「pelicanconf.py」の処理に加えてRSSとかフィードに関わるデータを作っているみたいでした。<br>&nbsp;（RSS興味ないので、<code>make html</code>で公開しちゃっても問題ないと思ってます）</p>
+<p><br></p>
+<hr>
+<h4 id="makefile1">Makefileに追加して1コマンドでデプロイできるようにする</h4>
+<p><code>Makefile</code>に以下を追加することで、コマンド<code>make deploy</code>だけでデプロイまで完了させることができます。</p>
+<div class="highlight"><pre><span></span><code>deploy: publish
+  ghp-import output
+  git push -f https://github.com/XXXX/XXXX.github.io.git gh-pages:deploy
+</code></pre></div>
+
+<p>ここまで用意すると何も考えずにコマンドでデプロイができて便利ですね。</p>
 <p><br></p>
 <hr>
 <h4 id="_2">運用向けのディレクトリ構造</h4>
@@ -381,7 +391,7 @@ ga('send', 'pageview');
     "name": "GitHub Pages＋PelicanでつくるBlog：Blogの運用管理方法の一例",
     "headline": "GitHub Pages＋PelicanでつくるBlog：Blogの運用管理方法の一例",
     "datePublished": "2025-12-05 12:00:00+09:00",
-    "dateModified": "",
+    "dateModified": "2026-07-28 10:00:00+09:00",
     "author": {
         "@type": "Person",
         "name": "みずのり",

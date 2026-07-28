@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>雑メモ - 環境構築メモ</title><link href="https://zatsumemo.dev/" rel="alternate"/><link href="https://zatsumemo.dev/feeds/setup.atom.xml" rel="self"/><id>https://zatsumemo.dev/</id><updated>2025-12-28T16:00:00+09:00</updated><entry><title>GitHub Pages＋PelicanでつくるBlog：アイキャッチ・プレビュー画像の設定</title><link href="https://zatsumemo.dev/blog/github-pages-and-ogp-image-preview.html" rel="alternate"/><published>2025-12-28T16:00:00+09:00</published><updated>2025-12-28T16:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-28:/blog/github-pages-and-ogp-image-preview.html</id><summary type="html">&lt;p&gt;OGPの設定でSNSなどでプレビューを表示させるまでの手順メモ&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/ogpimage_preview.png" title="チャッピー作成"&gt;&lt;br&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>雑メモ - 環境構築メモ</title><link href="https://zatsumemo.dev/" rel="alternate"/><link href="https://zatsumemo.dev/feeds/setup.atom.xml" rel="self"/><id>https://zatsumemo.dev/</id><updated>2026-07-28T10:00:00+09:00</updated><entry><title>GitHub Pages＋PelicanでつくるBlog：アイキャッチ・プレビュー画像の設定</title><link href="https://zatsumemo.dev/blog/github-pages-and-ogp-image-preview.html" rel="alternate"/><published>2025-12-28T16:00:00+09:00</published><updated>2025-12-28T16:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-28:/blog/github-pages-and-ogp-image-preview.html</id><summary type="html">&lt;p&gt;OGPの設定でSNSなどでプレビューを表示させるまでの手順メモ&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/setup/pelican/ogpimage_preview.png" title="チャッピー作成"&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
 &lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
 &lt;p&gt;Blogをつくった後、Twitter(X)などで見た場合にプレビューが表示されないので、どうにかしたいなーという状況でした。今回はプレビュー表示までの手順についてまとめます。&lt;br&gt;&amp;nbsp;※本記事のトップ画像がプレビューされるようにしてます。&lt;/p&gt;
@@ -581,7 +581,7 @@ Sitemap: https://mizunori.github.io/sitemap.xml
 &lt;li&gt;&lt;a href="https://realfavicongenerator.net/"&gt;Favicon Generator. For&amp;nbsp;real.&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：記事の書き方メモ、日本語利用時の注意点</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-writing.html" rel="alternate"/><published>2025-12-05T15:00:00+09:00</published><updated>2025-12-07T10:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-05:/blog/github-pages-and-pelican-blog-writing.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanで記事を書く際に知っておくポイントを雑多に記載&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：記事の書き方メモ、日本語利用時の注意点</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-writing.html" rel="alternate"/><published>2025-12-05T15:00:00+09:00</published><updated>2026-07-28T10:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-05:/blog/github-pages-and-pelican-blog-writing.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanで記事を書く際に知っておくポイントを雑多に記載&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
 &lt;p&gt;記事の公開ができる状況となったとしても、URL名やリンクの付与方法など気になる点が多数発生します。カテゴリやタグの日本語対応の方法なども含めて、雑多に書き出しておきます。&lt;br&gt;&amp;nbsp;※個人で見返すのがメインだったりしてます&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -646,13 +646,17 @@ Date: 2025-12-05 15:00
 Modified: 2025-12-07 10:00
 Category: 環境構築メモ
 Tags: GitHub, Pelican
+Cover: XXX/XXX/XXX.png
 TOC: show
 status: published
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;なんとなくわかるようなものは除いて、ポイントだけ紹介しておきます。 &lt;br&gt;&amp;nbsp;テーマによって使える・使えないがあるかもしれないので注意してください。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Slug&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;こちらがない場合、TitleをベースにHTMLファイル名（つまりはURL）が決まりますが、日本語から自動変換した文字列はイマイチです。なので、こちらでHTMLの名前を入れておきましょう。&lt;/p&gt;
+&lt;p&gt;こちらがない場合、TitleをベースにHTMLファイル名（つまりはURL）が決まります。が、日本語から自動変換した文字列はイマイチです。なので、こちらでHTMLの名前を入れておきましょう。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cover&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;アイキャッチ/プレビューとなるカバー画像を設定できます。&lt;code&gt;content/blog&lt;/code&gt;以下の画像ファイルのパスを設定することで、X（Twitter）やFaceBookへのリンクから画像が拾われます。設定方法については、&lt;a href="https://zatsumemo.dev/blog/github-pages-and-ogp-image-preview.html"&gt;こちらの記事&lt;/a&gt;も参考としてください。&lt;/p&gt;
+&lt;p&gt;なお、FaceBookでは日本語のパスが入るとうまくアイキャッチを拾ってくれないので、パス・ファイル名は日本語を入れないことを推奨します。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;TOC&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;右側の目次リンクが作られます。いらなければ行ごと消し去ればよいです。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;status&lt;/strong&gt;&lt;/p&gt;
@@ -687,7 +691,7 @@ status: published
 &lt;/ul&gt;
 &lt;p&gt;上記リンクで使用している&lt;code&gt;TAG_SUBSTITUTIONS&lt;/code&gt;などは、&lt;code&gt;TAG_REGEX_SUBSTITUTIONS&lt;/code&gt;などに置き換えて使用してください（2025/12段階）。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：Blogの運用管理方法の一例</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-management.html" rel="alternate"/><published>2025-12-05T12:00:00+09:00</published><updated>2025-12-05T12:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-05:/blog/github-pages-and-pelican-blog-management.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanでの運用向けのディレクトリ構造とリポジトリ・ブランチ管理方法&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;hr&gt;</content><category term="環境構築メモ"/><category term="GitHub"/><category term="Pelican"/></entry><entry><title>GitHub Pages＋PelicanでつくるBlog：Blogの運用管理方法の一例</title><link href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-management.html" rel="alternate"/><published>2025-12-05T12:00:00+09:00</published><updated>2026-07-28T10:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2025-12-05:/blog/github-pages-and-pelican-blog-management.html</id><summary type="html">&lt;p&gt;GitHub&amp;nbsp;PagesとPelicanでの運用向けのディレクトリ構造とリポジトリ・ブランチ管理方法&lt;/p&gt;</summary><content type="html">&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
 &lt;p&gt;実際はテーマ設定なども行ったうえでの手順となりますが、正式に日々の記事作成の運用をする場合には構成を調整した方が扱いやすいでしょう。本Blogで実施している運用手続きを（主に自分のために）メモしておきます。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -716,6 +720,16 @@ status: published
 &lt;p&gt;ghp-importを使って公開用のリポジトリを指定してpushしてます。最後のコマンドのXXXXの部分、deployと書いているブランチ名は各自で変えてください。&lt;/p&gt;
 &lt;p&gt;公開時にはいちおう&lt;code&gt;make publish&lt;/code&gt;を使用してます。ちなみに&lt;code&gt;make html&lt;/code&gt;は「pelicanconf.py」を使っていて、&lt;code&gt;make publish&lt;/code&gt;は「publishconf.py」を使ってます。&lt;br&gt;
 自分の環境において「publishconf.py」は、「pelicanconf.py」の処理に加えてRSSとかフィードに関わるデータを作っているみたいでした。&lt;br&gt;&amp;nbsp;（RSS興味ないので、&lt;code&gt;make html&lt;/code&gt;で公開しちゃっても問題ないと思ってます）&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="makefile1"&gt;Makefileに追加して1コマンドでデプロイできるようにする&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Makefile&lt;/code&gt;に以下を追加することで、コマンド&lt;code&gt;make deploy&lt;/code&gt;だけでデプロイまで完了させることができます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;deploy: publish
+  ghp-import output
+  git push -f https://github.com/XXXX/XXXX.github.io.git gh-pages:deploy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;ここまで用意すると何も考えずにコマンドでデプロイができて便利ですね。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h4 id="_2"&gt;運用向けのディレクトリ構造&lt;/h4&gt;
