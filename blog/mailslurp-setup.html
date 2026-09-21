@@ -220,7 +220,7 @@ ga('send', 'pageview');
                             2026-09-21(月)
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~47 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~119 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="https://zatsumemo.dev/category/setup.html">環境構築メモ</a>
@@ -280,6 +280,49 @@ ga('send', 'pageview');
 <p><strong>3.&nbsp;PythonのAPIでメールボックスの受信チェック</strong></p>
 <p><a href="https://qiita.com/GENZ_INC/items/78dd84b5b0f46b1ed00c">こちらのリンク先</a>のサンプルコードで動きます。</p>
 <p>メール受信のテストに使う場合には、Inbox内の全メール削除＠MailSlurp→テスト自動化の処理でメール送信→受信処理＠MailSlurp→受信したメールのAssert、という手続きでテストの成功までチェックできます。</p>
+<p><br></p>
+<hr>
+<h4 id="typescript">TypeScriptに取り込むときのサンプル</h4>
+<p>PlaywrightだとTypeScriptで書く時が多いはずなので、サンプル置いときます。<br>
+<code>PLAYER_MAILSLURP_AEC_API_KEY</code>、<code>PLAYER_MAILSLURP_AEC_INBOX_ID</code>は<code>.env</code>に設定する前提です。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">MailSlurp</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;mailslurp-client&quot;</span><span class="p">;</span>
+<span class="k">export</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">deleteAllEmail</span><span class="w"> </span><span class="p">}</span>
+<span class="k">export</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">receiveEmail</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// ※ APIキーは公式ダッシュボードから取得</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">apiKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PLAYER_MAILSLURP_AEC_API_KEY</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="c1">// ※ Inbox IdはInboxを作成した後に取得</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">inbox_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PLAYER_MAILSLURP_AEC_INBOX_ID</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">receiveEmail</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">mailslurp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MailSlurp</span><span class="p">({</span><span class="w"> </span><span class="nx">apiKey</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20000</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// メールが届くまで待機して最新の1通を取得</span>
+<span class="w">        </span><span class="c1">// 第3引数を true にすると未読のみを対象</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">mailslurp</span><span class="p">.</span><span class="nx">waitForLatestEmail</span><span class="p">(</span><span class="nx">inbox_id</span><span class="p">,</span><span class="w"> </span><span class="nx">timeout</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 受信データの中身を確認</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`送信元: </span><span class="si">${</span><span class="nx">email</span><span class="p">.</span><span class="kr">from</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`件名: </span><span class="si">${</span><span class="nx">email</span><span class="p">.</span><span class="nx">subject</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`本文（テキスト）: </span><span class="si">${</span><span class="nx">email</span><span class="p">.</span><span class="nx">body</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">email</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;メール受信エラー:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">deleteAllEmail</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">mailslurp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MailSlurp</span><span class="p">({</span><span class="w"> </span><span class="nx">apiKey</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// メールボックスのメールをすべて削除する</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">api_instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mailslurp</span><span class="p">.</span><span class="nx">emailController</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">mailslurp</span><span class="p">.</span><span class="nx">emptyInbox</span><span class="p">(</span><span class="nx">inbox_id</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;メールボックスのメールをすべて削除しました&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <p><br></p>
 <hr>
 <h4 id="tips">TIPSメモ</h4>
