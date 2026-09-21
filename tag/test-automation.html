@@ -26,8 +26,7 @@
 
         <!-- Title -->
         <title>
-    Categories &ndash; 雑メモ
-        </title>
+雑メモ - テスト自動化 tag        </title>
         
         <!-- Icon -->
         <link rel="shortcut icon" href="https://zatsumemo.dev/favicon.ico" type="image/x-icon">
@@ -124,7 +123,7 @@ ga('send', 'pageview');
 
             <!-- Page links -->
             <ul class="navbar-nav mr-auto text-center">
-                <li class="nav-item  active ">
+                <li class="nav-item ">
                     <a class="nav-link" href="https://zatsumemo.dev/categories.html">
                         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
                             <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
@@ -199,13 +198,8 @@ ga('send', 'pageview');
         <!-- Header -->
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
     <div class="container">
-        <div class="row">
-            <div class="col-8">
-                <h3 id="Categories in 雑メモ" style="color: lightgreen;">Categories in 雑メモ</h3>
-            </div>
-            <div class="col-4 small" style="margin-top: 0.5rem;">
-            </div>
-        </div>
+        <h1 id="雑メモ">雑メモ</h1>
+        <p style="font-size: larger; color: lightgreen;">現場と酒好きなソフトウェア/システムをつくる人による雑なメモ</p>
     </div>
         </header>
 
@@ -215,127 +209,30 @@ ga('send', 'pageview');
                     <!-- Sharing -->
 
                     <!-- Content -->
-    <!--
-	<div class="text-center">
-			<a class="btn btn-success btn-sm" href="https://zatsumemo.dev/category/reading.html">
-			  読書  <span class="badge badge-warning" style="font-size: small;">1</span>
-			</a>
-			<a class="btn btn-success btn-sm" href="https://zatsumemo.dev/category/setup.html">
-			  環境構築メモ  <span class="badge badge-warning" style="font-size: small;">12</span>
-			</a>
-			<a class="btn btn-success btn-sm" href="https://zatsumemo.dev/category/zatsumemo.html">
-			  雑メモ  <span class="badge badge-warning" style="font-size: small;">3</span>
-			</a>
-	</div>
-    -->
+    <!-- List of article -->
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="https://zatsumemo.dev/blog/mailslurp-setup.html">テスト自動化のメール送受信判定に使うMailSlurpを取り込んだ時のメモ</a>
+                </h5>
+                <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html">みずのり</a>, post on <span class="text-success">2026-09-21(月)</span></span>
+                <p><p>E2Eテストの自動化にMailSlurpを使ってメール受信判定をした時のメモ</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~47 words">Read in 1 mins</span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="https://zatsumemo.dev/category/setup.html">環境構築メモ</a>
+                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/test-automation.html">テスト自動化</a>
+                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/mailslurp.html">mailslurp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Accordion -->
-    <div id="accordionList" class="accordion shadow">
-            <!-- Accordion items -->
-            <div class="card">
-                <div id="heading_読書" class="card-header bg-white shadow-sm border-0">
-                    <h2 class="mb-0">
-                        <button type="button" data-toggle="collapse" data-target="#collapse読書" aria-expanded="false" aria-controls="collapse読書" class="btn btn-link text-dark font-weight-bold collapsible-link collapsed">
-                            読書  <span class="badge badge-warning" style="font-size: small;">1</span>
-                        </button>
-                    </h2>
-                </div>
-                <!-- Item list -->
-                <div id="collapse読書" aria-labelledby="heading_読書" data-parent="#accordionList" class="collapse" style="background-color: whitesmoke">
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/product_process_duality.html">プロダクト（製品）とプロセスの双対性</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-01(月)</span></span>
-                    </div>
-                </div>
-            </div>
-            <!-- Accordion items -->
-            <div class="card">
-                <div id="heading_環境構築メモ" class="card-header bg-white shadow-sm border-0">
-                    <h2 class="mb-0">
-                        <button type="button" data-toggle="collapse" data-target="#collapse環境構築メモ" aria-expanded="false" aria-controls="collapse環境構築メモ" class="btn btn-link text-dark font-weight-bold collapsible-link collapsed">
-                            環境構築メモ  <span class="badge badge-warning" style="font-size: small;">12</span>
-                        </button>
-                    </h2>
-                </div>
-                <!-- Item list -->
-                <div id="collapse環境構築メモ" aria-labelledby="heading_環境構築メモ" data-parent="#accordionList" class="collapse" style="background-color: whitesmoke">
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/mailslurp-setup.html">テスト自動化のメール送受信判定に使うMailSlurpを取り込んだ時のメモ</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2026-09-21(月)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-ogp-image-preview.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：アイキャッチ・プレビュー画像の設定</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-28(日)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/register-google-workspace.html">Google&nbsp;Workspaceの契約をしてみた</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-27(土)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-original-domain.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：独自ドメインを設定してみた</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-15(月)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-pelicanconf.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：pelicanconf.pyのメモ</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-08(月)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-search-and-analytics.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：検索と分析への対応（おためし程度）</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-07(日)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-theme.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：テーマ設定と見た目の対応</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-07(日)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-writing.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：記事の書き方メモ、日本語利用時の注意点</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-05(金)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-management.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：Blogの運用管理方法の一例</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-05(金)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-deploy.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：とりあえずな記事の公開（デプロイ）</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-01(月)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-setup-at-windows11.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：セットアップ方法＠Windows11</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-01(月)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：シリーズまとめ</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-12-01(月)</span></span>
-                    </div>
-                </div>
-            </div>
-            <!-- Accordion items -->
-            <div class="card">
-                <div id="heading_雑メモ" class="card-header bg-white shadow-sm border-0">
-                    <h2 class="mb-0">
-                        <button type="button" data-toggle="collapse" data-target="#collapse雑メモ" aria-expanded="false" aria-controls="collapse雑メモ" class="btn btn-link text-dark font-weight-bold collapsible-link collapsed">
-                            雑メモ  <span class="badge badge-warning" style="font-size: small;">3</span>
-                        </button>
-                    </h2>
-                </div>
-                <!-- Item list -->
-                <div id="collapse雑メモ" aria-labelledby="heading_雑メモ" data-parent="#accordionList" class="collapse" style="background-color: whitesmoke">
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/warning-prepare-for-the-changes-in-it-industry.html">警告：IT業界の変化を見据えて備えよう</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2026-07-27(月)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/final-tax-2025.html">確定申告のメモ（2025年度作業）</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2026-03-08(日)</span></span>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <a  class="m-0" href="https://zatsumemo.dev/blog/first-step.html">Blogつくってみた</a><br>
-                        <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html" style="color: darkblue;">みずのり</a>, post on <span class="text-success">2025-11-20(木)</span></span>
-                    </div>
-                </div>
-            </div>
-    </div>
-    
+    <!-- Pagination -->
+<div class="pagination px-2">
+</div>
     <!-- Google Adsense -->
                 </div>
         </main>

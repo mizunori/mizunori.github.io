@@ -13,20 +13,28 @@
 
         <!-- Default metadata -->
     <meta name="author" content="みずのり" />
-    <meta name="description" content="現場と酒好きなソフトウェア/システムをつくる人による雑なメモ" />
+    <meta name="description" content="E2Eテストの自動化にMailSlurpを使ってメール受信判定をした時のメモ" />
+    <meta name="keywords" content="テスト自動化, MailSlurp">
 <meta property="og:site_name" content="雑メモ" />
-<meta property="og:type" content="blog" />
-<meta property="og:title" content="雑メモ" />
-<meta property="og:description" content="現場と酒好きなソフトウェア/システムをつくる人による雑なメモ" />
+<meta property="og:title" content="テスト自動化のメール送受信判定に使うMailSlurpを取り込んだ時のメモ" />
+<meta property="og:description" content="E2Eテストの自動化にMailSlurpを使ってメール受信判定をした時のメモ" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="https://zatsumemo.dev" />
-<meta property="og:image" content="https://zatsumemo.dev/logo.png">
+<meta property="og:url" content="https://zatsumemo.dev/blog/mailslurp-setup.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-09-21 14:00:00+09:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="https://zatsumemo.dev/author/mizunori.html">
+<meta property="article:section" content="環境構築メモ" />
+	<meta property="article:tag" content="テスト自動化" />
+	<meta property="article:tag" content="MailSlurp" />
+	<meta property="og:image" content="https://zatsumemo.dev/logo.png">
+
         <!-- Site Claim -->
 
 
         <!-- Title -->
         <title>
-                雑メモ
+    テスト自動化のメール送受信判定に使うMailSlurpを取り込んだ時のメモ &ndash; 雑メモ
         </title>
         
         <!-- Icon -->
@@ -46,6 +54,7 @@
 
 
 
+            <link href="https://zatsumemo.dev/feeds/setup.atom.xml" type="application/atom+xml" rel="alternate" title="雑メモ Categories Atom Feed" />
 
 
 
@@ -58,6 +67,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="https://zatsumemo.dev/theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="https://zatsumemo.dev/theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="https://zatsumemo.dev/theme/extra/admonition.min.css">
@@ -198,10 +208,27 @@ ga('send', 'pageview');
 
         <!-- Header -->
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
-    <div class="container">
-        <h1 id="雑メモ">雑メモ</h1>
-        <p style="font-size: larger; color: lightgreen;">現場と酒好きなソフトウェア/システムをつくる人による雑なメモ</p>
-    </div>
+	<div class="container">
+		<h3 id="mailslurp-setup">テスト自動化のメール送受信判定に使うMailSlurpを取り込んだ時のメモ</h3>
+		<p style="font-size:larger;"><p>E2Eテストの自動化にMailSlurpを使ってメール受信判定をした時のメモ</p></p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="https://zatsumemo.dev/author/mizunori.html" class="card-link">みずのり</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">2026-09-21(月)</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            2026-09-21(月)
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~47 words">1 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="https://zatsumemo.dev/category/setup.html">環境構築メモ</a>
+                    <a class="badge badge-info" href="https://zatsumemo.dev/tag/test-automation.html">テスト自動化</a>
+                    <a class="badge badge-info" href="https://zatsumemo.dev/tag/mailslurp.html">mailslurp</a>
+            </div>
+        </div>
+	</div>
         </header>
 
         <!-- Main -->
@@ -210,128 +237,99 @@ ga('send', 'pageview');
                     <!-- Sharing -->
 
                     <!-- Content -->
-    <!-- List of article -->
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="https://zatsumemo.dev/blog/github-pages-and-pelican-blog-management.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：Blogの運用管理方法の一例</a>
-                </h5>
-                <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html">みずのり</a>, post on <span class="text-success">2025-12-05(金)</span></span>
-                <p><p>GitHub&nbsp;PagesとPelicanでの運用向けのディレクトリ構造とリポジトリ・ブランチ管理方法</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~68 words">Read in 1 mins</span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="https://zatsumemo.dev/category/setup.html">環境構築メモ</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/github.html">github</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/pelican.html">pelican</a>
-                    </div>
-                </div>
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+
+                <!-- Article -->
+                <!-- Modified: 2026-09-28 16:00 -->
+
+<p>PlaywrightなどのE2Eテスト自動化のフレームワークを使っていると、だんだんとメールに絡むテストをやりたくなってきます。<br>
+アカウント登録、ログイン、承認など多くの手順で登場するので、メールの取り扱いができると幅が広がります。そしてメール絡みの問題連絡って多いですからね…（遠い目<br>
+<br></p>
+<hr>
+<h4 id="mailslurp">MailSlurpの関連情報</h4>
+<p>簡単に言うとAPIでメールボックスと対応するメールアドレスを作成し、メールの送受信ができる。それがAPIで操作できる、というものです。</p>
+<p>自動化に必要なモノは十分ある感じです。</p>
+<p><strong>参考情報</strong></p>
+<ul>
+<li><a href="https://www.mailslurp.com/">MailSlurp公式サイト</a>から見るのがよいでしょう</li>
+<li>APIキー獲得、簡単な動作確認までは<a href="https://support.magic-pod.com/hc/ja/articles/36159996974361-MailSlurp%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6Email%E3%82%92%E3%83%86%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B">MagicPodさんの情報</a>も参考となります</li>
+<li>Pythonの場合の参考：<a href="https://qiita.com/GENZ_INC/items/78dd84b5b0f46b1ed00c">アカウント作成時のメール認証リンクをMailSlurp +&nbsp;Pythonで踏んでみた</a></li>
+</ul>
+<p><br></p>
+<hr>
+<h4 id="_1">実施記録メモ（登録から動作確認まで）</h4>
+<p><strong>1.&nbsp;アカウント作成、APIキー獲得</strong></p>
+<ul>
+<li>気になる人は<a href="#mailslurpの関連情報">参考情報</a>を見てください</li>
+</ul>
+<p><strong>2.&nbsp;APIでメールボックス(Inbox)を作成してみる</strong></p>
+<p>(Windows派なので)Powershellで実行はこんな感じ。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">-Method</span> <span class="n">Post</span> <span class="n">-Uri</span> <span class="n">https</span><span class="p">://</span><span class="n">api</span><span class="p">.</span><span class="n">mailslurp</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">inboxes</span><span class="k">?</span><span class="n">apiKey</span><span class="p">=[</span><span class="n">取得したAPIキー</span><span class="p">]</span>
+</code></pre></div>
+
+<p>作ったものを削除する場合は以下。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">-Method</span> <span class="n">Delete</span> <span class="n">-Uri</span> <span class="n">https</span><span class="p">://</span><span class="n">api</span><span class="p">.</span><span class="n">mailslurp</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">inboxes</span><span class="k">?</span><span class="n">apiKey</span><span class="p">=[</span><span class="n">取得したAPIキー</span><span class="p">]</span>
+</code></pre></div>
+
+<p>これらの操作はMailSlurpのアカウント作成後のダッシュボードからも操作可能なので、そちらから実施してもよいものです。</p>
+<p>メールボックス（Inbox）を作成すると、Inbox&nbsp;Id、メールアドレスを取得できます。これらの情報を使っていきます。</p>
+<p><strong>3.&nbsp;PythonのAPIでメールボックスの受信チェック</strong></p>
+<p><a href="https://qiita.com/GENZ_INC/items/78dd84b5b0f46b1ed00c">こちらのリンク先</a>のサンプルコードで動きます。</p>
+<p>メール受信のテストに使う場合には、Inbox内の全メール削除＠MailSlurp→テスト自動化の処理でメール送信→受信処理＠MailSlurp→受信したメールのAssert、という手続きでテストの成功までチェックできます。</p>
+<p><br></p>
+<hr>
+<h4 id="tips">TIPSメモ</h4>
+<p>（自分が）あとで見直すためのメモです。</p>
+<ul>
+<li>Inboxは作成、削除がたやすい（dockerで作られてる）感じで、毎回削除を想定してるかも</li>
+<li>とはいえ、Inboxを意識的に消さないと永続的には使える</li>
+<li>いちおう、永続ではない前提でInbox/メールアドレスを作り直してもよいテスト自動化のつくりにする方がよさそう</li>
+<li>Freeのプランで月のメール受信が500件。軽いリグレッションを超えるなら有料プランが無難</li>
+<li>もうちょい安めの中間プランがあるとよいのですけどねぇ…</li>
+</ul>
+<p><br></p>
+<hr>
+<h4 id="mailnator">（おまけ）その他ツールメモ：Mailnator</h4>
+<p><a href="https://www.mailinator.com/">Mailnator</a>も簡単なテストの際には役立つケースがあります。</p>
+<ul>
+<li>メールの文字列を任意に受信だけMailnatorのページで確認できます</li>
+<li>捨てアカウントでのメールでは特に便利そうです</li>
+<li>とはいえ、各社のテストメール「丸見え」になるので、使用範囲は限られるかも</li>
+</ul>
+<p><br></p>
+<hr>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-100" href="https://zatsumemo.dev/blog/warning-prepare-for-the-changes-in-it-industry.html">
+警告：IT業界の変化を見据えて備えよう
+    </a>
+</div>
+                <!-- Google Adsense -->
             </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="https://zatsumemo.dev/blog/github-pages-and-pelican-deploy.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：とりあえずな記事の公開（デプロイ）</a>
-                </h5>
-                <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html">みずのり</a>, post on <span class="text-success">2025-12-01(月)</span></span>
-                <p><p>GitHub&nbsp;PagesとPelicanでの記事の公開</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~45 words">Read in 1 mins</span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="https://zatsumemo.dev/category/setup.html">環境構築メモ</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/github.html">github</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/pelican.html">pelican</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="https://zatsumemo.dev/blog/github-pages-and-pelican-setup-at-windows11.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：セットアップ方法＠Windows11</a>
-                </h5>
-                <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html">みずのり</a>, post on <span class="text-success">2025-12-01(月)</span></span>
-                <p><p>GitHub&nbsp;PagesとPelicanのセットアップ方法：公開前の準備、ローカルでの確認まで</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~348 words">Read in 2 mins</span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="https://zatsumemo.dev/category/setup.html">環境構築メモ</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/github.html">github</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/pelican.html">pelican</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="https://zatsumemo.dev/blog/github-pages-and-pelican-summary.html">GitHub&nbsp;Pages＋PelicanでつくるBlog：シリーズまとめ</a>
-                </h5>
-                <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html">みずのり</a>, post on <span class="text-success">2025-12-01(月)</span></span>
-                <p><p>GitHub&nbsp;PagesとPelicanでBlogをつくった方法のリンクをまとめておきます</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~28 words">Read in 1 mins</span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="https://zatsumemo.dev/category/setup.html">環境構築メモ</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/github.html">github</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/pelican.html">pelican</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="https://zatsumemo.dev/blog/product_process_duality.html">プロダクト（製品）とプロセスの双対性</a>
-                </h5>
-                <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html">みずのり</a>, post on <span class="text-success">2025-12-01(月)</span></span>
-                <p><p>実践ソフトウェアエンジニアリング（第6版）の訳文を参考に「Process and Product: Dichotomy or&nbsp;Duality?」の全訳を記述</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~32 words">Read in 1 mins</span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="https://zatsumemo.dev/category/reading.html">読書</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/sepa.html">実践ソフトウェアエンジニアリング</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/translation.html">翻訳</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="https://zatsumemo.dev/blog/first-step.html">Blogつくってみた</a>
-                </h5>
-                <span class="small">by <a href="https://zatsumemo.dev/author/mizunori.html">みずのり</a>, post on <span class="text-success">2025-11-20(木)</span></span>
-                <p><p>Blogの環境を構築して雑に書いてみる予定</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~8 words">Read in 1 mins</span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="https://zatsumemo.dev/category/zatsumemo.html">雑メモ</a>
-                            <a class="badge badge-info" href="https://zatsumemo.dev/tag/zatsumemo.html">雑メモ</a>
-                    </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
                 </div>
             </div>
         </div>
 
-    <!-- Pagination -->
-<div class="pagination px-2">
-    <a class="w-100 text-right" href="https://zatsumemo.dev/index.html">
-        Newer Posts &gg;
-    </a>
-</div>
-    <!-- Google Adsense -->
+    <!-- Releated posts -->
+
+    <!-- Comments -->
                 </div>
         </main>
 
@@ -358,6 +356,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="https://zatsumemo.dev/theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="https://zatsumemo.dev/theme/style.js"></script>
 
     <!-- Sharing -->
@@ -366,11 +365,19 @@ ga('send', 'pageview');
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
-    "@type": "Blog",
-    "name": " 雑メモ ",
-    "url": "https://zatsumemo.dev",
+    "@type": "BlogPosting",
+    "name": "テスト自動化のメール送受信判定に使うMailSlurpを取り込んだ時のメモ",
+    "headline": "テスト自動化のメール送受信判定に使うMailSlurpを取り込んだ時のメモ",
+    "datePublished": "2026-09-21 14:00:00+09:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "みずのり",
+        "url": "https://zatsumemo.dev/author/mizunori.html"
+    },
     "image": "https://zatsumemo.dev/logo.png",
-    "description": "現場と酒好きなソフトウェア/システムをつくる人による雑なメモ"
+    "url": "https://zatsumemo.dev/blog/mailslurp-setup.html",
+    "description": "E2Eテストの自動化にMailSlurpを使ってメール受信判定をした時のメモ"
 }
 </script>
     <!-- Disqus count -->
