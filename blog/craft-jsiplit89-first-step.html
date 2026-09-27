@@ -12,15 +12,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         <!-- Default metadata -->
-            <meta name="author" content="みずのり" />
-            <meta name="description" content="現場と酒好きなソフトウェア/システムをつくる人による雑なメモ" />
+    <meta name="author" content="みずのり" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="keyboard, JISplit89">
+<meta property="og:site_name" content="雑メモ" />
+<meta property="og:title" content="分割キーボード（JISplit89）を組み立ててみた（沼）：ことの発端～ThinkPadキーボードから浮気して～" />
+<meta property="og:description" content="" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://zatsumemo.dev/blog/craft-jsiplit89-first-step.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-09-27 17:00:00+09:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="https://zatsumemo.dev/author/mizunori.html">
+<meta property="article:section" content="モノづくり" />
+	<meta property="article:tag" content="keyboard" />
+	<meta property="article:tag" content="JISplit89" />
+	<meta property="og:image" content="https://zatsumemo.dev/blog/craft/2607_2609_diy_keyboard/fig_2609_1_double_thinkpad.jpg">
 
         <!-- Site Claim -->
 
 
         <!-- Title -->
         <title>
-雑メモ - Authors        </title>
+    分割キーボード（JISplit89）を組み立ててみた（沼）：ことの発端～ThinkPadキーボードから浮気して～ &ndash; 雑メモ
+        </title>
         
         <!-- Icon -->
         <link rel="shortcut icon" href="https://zatsumemo.dev/favicon.ico" type="image/x-icon">
@@ -39,6 +54,7 @@
 
 
 
+            <link href="https://zatsumemo.dev/feeds/monodukuri.atom.xml" type="application/atom+xml" rel="alternate" title="雑メモ Categories Atom Feed" />
 
 
 
@@ -51,6 +67,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="https://zatsumemo.dev/theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="https://zatsumemo.dev/theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="https://zatsumemo.dev/theme/extra/admonition.min.css">
@@ -191,6 +208,27 @@ ga('send', 'pageview');
 
         <!-- Header -->
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
+	<div class="container">
+		<h3 id="craft-jsiplit89-first-step">分割キーボード（JISplit89）を組み立ててみた（沼）：ことの発端～ThinkPadキーボードから浮気して～</h3>
+		<p style="font-size:larger;"></p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="https://zatsumemo.dev/author/mizunori.html" class="card-link">みずのり</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">2026-09-27(日)</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            2026-09-27(日)
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~38 words">1 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="https://zatsumemo.dev/category/monodukuri.html">モノづくり</a>
+                    <a class="badge badge-info" href="https://zatsumemo.dev/tag/keyboard.html">keyboard</a>
+                    <a class="badge badge-info" href="https://zatsumemo.dev/tag/jisplit89.html">jisplit89</a>
+            </div>
+        </div>
+	</div>
         </header>
 
         <!-- Main -->
@@ -199,10 +237,99 @@ ga('send', 'pageview');
                     <!-- Sharing -->
 
                     <!-- Content -->
-    <h2>Authors on 雑メモ</h2>
-    <ul>
-            <li><a href="https://zatsumemo.dev/author/mizunori.html">みずのり</a> (19)</li>
-    </ul>
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+
+                <!-- Article -->
+                <!-- Modified: 2026-09-21 11:00 -->
+
+<p><img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_1_double_thinkpad.jpg" title="Thinkpad二刀流"><br>
+<br></p>
+<p>＜<a href="https://zatsumemo.dev/blog/craft-jsiplit89-summary.html">シリーズ全体のリンクはこちら</a>＞</p>
+<hr>
+<h4 id="thinkpad">ThinkPadキーボードから浮気して</h4>
+<p>25年来のThinkPadユーザーで、外付けキーボードもThinkPadキーボードを20年くらい愛用してます。ちまちま買い替えしているのですが、ThinkPadキーボードをここ数年は2つ、分割キーボード的に使ってます。アイキャッチ画像の感じですね。</p>
+<p>写真のモノで5年・10年使っている状況、さすがにヘタってきたのを感じてます。<br>&nbsp;そこで、2025末～2026にかけてLenovoでキーボードの買い替えをしようとをチェックしていたのですが、ThinkPadキーボードは昨年の在庫が切れた段階で新型の販売もなさそうな様子。カナシイ…</p>
+<p>（ThinkPadキーボードの新作が出ていれば今回の活動は発生しなかったのですが）この機会にキーボードを刷新しようかなと思ったのがスタートです。</p>
+<p><br></p>
+<hr>
+<h4 id="_1">キーボードへの要求</h4>
+<p>元のThinkPadキーボードと大きく変わらないのが希望ですが、変更してもよい要素も分けて考えてみました。</p>
+<p><strong>要求</strong></p>
+<ul>
+<li>分割キーボードであること</li>
+<li>ThinkPadと近いキー配置、せめてJIS配列…くらい</li>
+<li>70-75％レイアウトが目安（2つキーボード用意するのでもよい）</li>
+</ul>
+<p><strong>気にしなくてもよい範囲</strong></p>
+<ul>
+<li>打鍵感はまあ気に入ればよしとする&nbsp;※とはいえ、HHKBはちょっと軽かった…</li>
+<li>無線である必要なし、USB接続で動けばOK</li>
+<li>トラックポイント（赤ポチ）は…なくてもよいかな</li>
+<li></li>
+</ul>
+<p><strong>いきなり横道にそれる</strong></p>
+<p>ちなみにこのマウスがお気に入り（これもLenovo）：<a href="https://www.lenovo.com/jp/ja/p/accessories-and-software/keyboards-and-mice/mice/4y51t62792">ThinkPad Bluetooth プレゼンターマウス(Aura&nbsp;Edition)</a></p>
+<p><br></p>
+<hr>
+<h4 id="_2">キーボードをざっと調査</h4>
+<p>分割＆<span class="caps">JIS</span>＆70-75％はあまりない、という結論となりました。<br>
+ThinkPadキーボードで使っていた形式と同様に、HHKBやREALFORCEを2個並べるのも考えましたが、対象のキーボードが気に入らない可能性もあるな…と。<br>
+※組み立て後に<a href="https://www.realforce.co.jp/products/series_rs1.html">REALFORCEが分割キーボードを発表</a>してます、何てことだ！</p>
+<p>ちなみに、この辺（<a href="https://www.amazon.co.jp/dp/B0F98RDWV9?_encoding=UTF8&amp;psc=1&amp;ref_=cm_sw_r_cp_ud_dp_PP5YM7B39HWE7YAB9C5Q"><span class="caps">ASUS</span> <span class="caps">ROG</span> Falcata Gaming Keyboard</a>）も候補には入れてました。    </p>
+<p>とはいえ、要求の組み合わせで毎回出てきてしまうのが、分割キーボード組み立てキットなのでした。<br>&nbsp;特に興味を引いたのは以下2つ。</p>
+<ul>
+<li><a href="https://shop.yushakobo.jp/collections/split-keyboards/products/7spro">7sPro</a></li>
+<li><a href="https://shop.yushakobo.jp/collections/split-keyboards/products/jisplit89">JISplit89</a></li>
+</ul>
+<p><br></p>
+<hr>
+<h4 id="_3">沼へ…？</h4>
+<p>世の中にはキーボード沼にずっぽりハマっている方はいる（ソフトウェア開発やってる人は道具へのこだわりのため多い）のですが、おためしがてら入口に入ってみることにしました。</p>
+<p>最初はファンクションキーもあるJISplit89あたりを試してみようかな？と目途を立てて、情報集めからスタートしてみました。</p>
+<p><br></p>
+<hr>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-50" href="https://zatsumemo.dev/blog/craft-jsiplit89-summary.html">
+&ll; 分割キーボード（JISplit89）を組み立ててみた（沼）：まとめ
+    </a>
+    <a class="w-50 text-right" href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html">
+        分割キーボード（JISplit89）を組み立ててみた（沼）：キーボード組み立てへの道～情報収集～ &gg;    </a>
+</div>
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
+
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html">分割キーボード（JISplit89）を組み立ててみた（沼）：キーボード組み立てへの道～情報収集～</a></li>
+                <li><a href="https://zatsumemo.dev/blog/craft-jsiplit89-summary.html">分割キーボード（JISplit89）を組み立ててみた（沼）：まとめ</a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
                 </div>
         </main>
 
@@ -229,6 +356,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="https://zatsumemo.dev/theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="https://zatsumemo.dev/theme/style.js"></script>
 
     <!-- Sharing -->
@@ -237,11 +365,19 @@ ga('send', 'pageview');
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
-    "@type": "Blog",
-    "name": " 雑メモ ",
-    "url": "https://zatsumemo.dev",
-    "image": "https://zatsumemo.dev/logo.png",
-    "description": "現場と酒好きなソフトウェア/システムをつくる人による雑なメモ"
+    "@type": "BlogPosting",
+    "name": "分割キーボード（JISplit89）を組み立ててみた（沼）：ことの発端～ThinkPadキーボードから浮気して～",
+    "headline": "分割キーボード（JISplit89）を組み立ててみた（沼）：ことの発端～ThinkPadキーボードから浮気して～",
+    "datePublished": "2026-09-27 17:00:00+09:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "みずのり",
+        "url": "https://zatsumemo.dev/author/mizunori.html"
+    },
+    "image": "craft/2607_2609_diy_keyboard/fig_2609_1_double_thinkpad.jpg",
+    "url": "https://zatsumemo.dev/blog/craft-jsiplit89-first-step.html",
+    "description": ""
 }
 </script>
     <!-- Disqus count -->
