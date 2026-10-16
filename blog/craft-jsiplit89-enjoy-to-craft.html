@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+
+        <!-- Required metadata tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Default metadata -->
+    <meta name="author" content="みずのり" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="keyboard, JISplit89">
+<meta property="og:site_name" content="雑メモ" />
+<meta property="og:title" content="分割キーボード（JISplit89）を組み立ててみた（沼）：JISplit89を組み立てる！" />
+<meta property="og:description" content="" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://zatsumemo.dev/blog/craft-jsiplit89-enjoy-to-craft.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-16 14:00:00+09:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="https://zatsumemo.dev/author/mizunori.html">
+<meta property="article:section" content="モノづくり" />
+	<meta property="article:tag" content="keyboard" />
+	<meta property="article:tag" content="JISplit89" />
+	<meta property="og:image" content="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_arrived_kit.jpg">
+
+        <!-- Site Claim -->
+
+
+        <!-- Title -->
+        <title>
+    分割キーボード（JISplit89）を組み立ててみた（沼）：JISplit89を組み立てる！ &ndash; 雑メモ
+        </title>
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="https://zatsumemo.dev/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="https://zatsumemo.dev/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/favicon-96x96.png">
+        <link rel="icon" type="image/png" href="https://zatsumemo.dev/favicon-96x96.png">
+        <link rel="icon" href="/favicon.ico">
+        <link rel="icon" href="https://zatsumemo.dev/favicon.ico">
+
+        <!-- Search engine -->
+            <meta name="robots" content="" />
+
+        <!-- Feeds -->
+            <link href="https://zatsumemo.dev/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="雑メモ Full Atom Feed" />
+
+
+
+
+            <link href="https://zatsumemo.dev/feeds/monodukuri.atom.xml" type="application/atom+xml" rel="alternate" title="雑メモ Categories Atom Feed" />
+
+
+
+
+        <!-- Styles -->
+        <!--
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+        -->
+        <link rel="stylesheet" href="https://zatsumemo.dev/theme/bootstrap/bootstrap.min.css">
+        <!--
+        <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
+        -->
+            <link rel="stylesheet" href="https://zatsumemo.dev/theme/extra/bootstrap-toc.min.css">
+        <link rel="stylesheet" href="https://zatsumemo.dev/theme/pygment/friendly.min.css">
+        <!--
+        <link rel="stylesheet" href="https://zatsumemo.dev/theme/extra/admonition.min.css">
+        -->
+        <link rel="stylesheet" href="https://zatsumemo.dev/theme/style.css">
+
+        <!-- Google Analytics -->
+<!-- <script>
+(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m) })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'G-TBT2HTL4TS', 'auto');
+ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TBT2HTL4TS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TBT2HTL4TS');
+</script>
+        <!-- Google Global Site Tag -->
+
+        <!-- Google Tag Manager -->
+
+        <!-- Google Adsense -->
+
+        <!-- Heap Analytic -->
+
+        <!-- Piwik Tracking -->
+
+        <!-- Matomo Tracking -->
+
+</head>
+
+<!-- Body -->
+<body class="d-flex flex-column" data-spy="scroll" data-target="#toc" data-offset="0" style="position: relative;">
+    <!-- Top anchor -->
+    <a href="#" id="backToTop" style="display: none; z-index: 1;" title="Back to top"><span></span></a>
+
+    <!-- Google tag manager -->
+
+    <!-- Navigation -->
+    <nav class="flex-shrink-0 navbar navbar-expand-md navbar-expand-lg navbar-dark bg-dark text-light shadow-sm">
+        <!-- Logo -->
+        <a class="navbar-brand" href="https://zatsumemo.dev">雑メモ</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon small"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- i18n subsites -->
+
+            <!-- Page links -->
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://zatsumemo.dev/categories.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
+                        </svg>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://zatsumemo.dev/tags.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z" fill="currentColor"></path>
+                        </svg>
+                        Tags
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://zatsumemo.dev/archives.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M1.8 9l-.8-4h22l-.8 4h-2.029l.39-2h-17.122l.414 2h-2.053zm18.575-6l.604-2h-17.979l.688 2h16.687zm3.625 8l-2 13h-20l-2-13h24zm-8 4c0-.552-.447-1-1-1h-6c-.553 0-1 .448-1 1s.447 1 1 1h6c.553 0 1-.448 1-1z" fill="currentColor"></path>
+                        </svg>
+                        Archives
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://zatsumemo.dev/pages/about.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
+                        </svg>
+                        About
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Search form -->
+            <form class="form-inline text-center" action="https://zatsumemo.dev/search.html">
+                <input class="form-control w-100 bg-dark text-light text-center border-0 p-2" type="text" name="q" pattern=".{3,}" title="At least 3 characters" required="" placeholder="Type here to search" aria-label="Search">
+            </form>
+
+            <!-- Social links -->
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/noriyuki.mizuno.7">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Facebook</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/mizunori">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Github</title>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://x.com/NoriyukiMizuno">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Twitter</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Full page -->
+    <div class="flex-shrink-0 flex-grow-1">
+
+        <!-- Header -->
+        <header class="bg-dark text-light shadow-sm pt-3 pb-2">
+	<div class="container">
+		<h3 id="craft-jsiplit89-enjoy-to-craft">分割キーボード（JISplit89）を組み立ててみた（沼）：JISplit89を組み立てる！</h3>
+		<p style="font-size:larger;"></p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="https://zatsumemo.dev/author/mizunori.html" class="card-link">みずのり</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">2026-10-16(金)</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            2026-10-16(金)
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~61 words">1 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="https://zatsumemo.dev/category/monodukuri.html">モノづくり</a>
+                    <a class="badge badge-info" href="https://zatsumemo.dev/tag/keyboard.html">keyboard</a>
+                    <a class="badge badge-info" href="https://zatsumemo.dev/tag/jisplit89.html">jisplit89</a>
+            </div>
+        </div>
+	</div>
+        </header>
+
+        <!-- Main -->
+        <main class="py-3">
+                <div class="container">
+                    <!-- Sharing -->
+
+                    <!-- Content -->
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+
+                <!-- Article -->
+                <!-- Modified: 2026-09-21 11:00 -->
+
+<p><img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_arrived_kit.jpg" title="JISplit89の購入品一式"><br>
+<br></p>
+<p>＜<a href="https://zatsumemo.dev/blog/craft-jsiplit89-summary.html">シリーズ全体のリンクはこちら</a>＞</p>
+<p>ついに本命のJISplit89を組み立ててみます！</p>
+<hr>
+<h4 id="_1">購入したもの</h4>
+<p>こんな感じで届きました。</p>
+<p><img alt="購入品一式" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_purchased.jpg" title="今回の購入品一式"></p>
+<p>購入品は「<a href="https://yushakobo.jp/">遊舎工房さん</a>」ですべて整いました。<br>&nbsp;※合計金額でXXXを買えるよね…、とかは考えてはいけない、カンガエテハイケナイ</p>
+<p>購入品は以下となります。無線化は不要だったのでやってません。無駄に光らせる必要がなければLEDもいらないでしょう。</p>
+<ul>
+<li><a href="https://shop.yushakobo.jp/collections/split-keyboards/products/jisplit89">JISplit89</a></li>
+<li><span class="caps">LED</span>（20個分）：<a href="https://shop.yushakobo.jp/products/sk6812mini-e-10"><span class="caps">SK6812MINI</span>-E</a></li>
+<li>キースイッチ（89個以上）：<a href="https://shop.yushakobo.jp/products/11487">KBDfans Roller V2 linear&nbsp;switches</a></li>
+<li>キーキャップ：<a href="https://shop.yushakobo.jp/products/9605?_pos=1&amp;_sid=50865b5fb&amp;_ss=r">Acid Caps ”Standard” Peri on&nbsp;Gray</a></li>
+</ul>
+<p>キースイッチやキーキャップに関しては<a href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html">こちらの記事</a>で選定したものとなります。<br>
+また、工具関連は別で用意してます。<a href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html#その他準備したもの">こちら</a>も参考にしてもらえればと。</p>
+<p><br></p>
+<hr>
+<h4 id="_2">手順以外でやっていること</h4>
+<p><a href="https://salicylic-acid3.hatenablog.com/entry/jisplit89-build-guide">自作キーボードキット『JISplit89』ビルドガイド</a>を見れば手順としてはほぼ十分です。あわせて、<a href="https://otsuneko-blog.com/posts/jisplit89">分離型キーボード『JISplit89』を自作した話</a>も参考とさせていただいてます。手順としてはこれらを見ていただけば十分ではないかと。</p>
+<p>ここでは、明確な手順としては書かれていないものをいくつかPickUpだけしておきます。</p>
+<p><br></p>
+<hr>
+<h4 id="1">手順以外でやっていること①：端子をエポキシで固める</h4>
+<p>自分は無線化はせずUSBで接続する予定でした。いろいろ情報を見ると端子の抜き差しでの基盤のダメージがありそうなので、端子付近をエポキシ樹脂で固める方向としました。参考は<a href="https://otsuneko-blog.com/posts/jisplit89#%E3%82%A8%E3%83%9D%E3%82%AD%E3%82%B7%E6%A8%B9%E8%84%82%E3%81%A7bmp%E5%9B%BA%E5%AE%9A">こちら</a>。<br>
+ちなみに、最終的にUSBで接続するのは片方のみ（右 or&nbsp;左どちらかを決めればよい）となるので、端子を固めるのは「普段USBを指す側」だけでよいでしょう。</p>
+<p>自分は<a href="https://jp.daisonet.com/products/4550480276144">ダイソーのエポキシ接着剤</a>を使用しました。いい感じに固まるのですが、気を付けないとミスも発生すると思いますので、簡単な手順と注意事項だけまとめておきます。<br>&nbsp;最悪ケースは「端子とケーブルが一体化して接着されてしまう」です。気を付けてください。※1つミスった…</p>
+<p><br></p>
+<p><strong>手順1.&nbsp;該当の接着剤を混ぜて1時間くらい放置</strong></p>
+<p>エポキシ接着剤は2つの液体を同量で混ぜることで固まります。ただ、混ぜればすぐ固まるわけではなく、まあまあ時間がかかります。<br>&nbsp;「固定」を目的とした場合、それなりの粘度がある状況で塗るとよいため、1時間くらい放置するのがよいでしょう。混ぜてすぐ使うと、余計なところに入り込んで危険です。混ぜて放置です。</p>
+<p><img alt="混ぜて放置" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_epoxy.jpg" title="混ぜて放置"></p>
+<p><br></p>
+<p><strong>手順2：USB端子内側を保護して接着剤を塗る</strong></p>
+<p>USB端子の中に接着剤が入り込むと、固まってケーブルの抜き差しがやりづらくなります。自分は小さい付箋紙を使いましたが、次の写真のように内側から保護したうえで塗る感じとなります。<br>&nbsp;ある程度の粘度となった接着剤を爪楊枝などですくってぬりぬりします。スルーホールもつぶさないよう気を付けましょう。</p>
+<p><img alt="USB保護" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_usb_protection.jpg" title="USBを内側から紙で保護"></p>
+<p><br></p>
+<p><strong>手順3：半日以上放置</strong></p>
+<p>該当の接着剤は案外固まるまで時間がかかります。ためしにUSB端子を差し込んで抜けなくなった！ということがないように、半日ほどは放置しましょう。</p>
+<p><br></p>
+<hr>
+<h4 id="2">手順以外でやっていること②：スタビライザーにルブを塗る、接点にテープを張る</h4>
+<p><a href="https://salicylic-acid3.hatenablog.com/entry/stabilizer-lubrication">スタビライザーのルブの話</a>にてまとまっているこちらの内容です。別途購入したグリスをぬりぬりしておきます。</p>
+<p>あわせて<a href="https://salicylic-acid3.hatenablog.com/entry/stabilizer-lubrication#PCB%E3%81%AB%E3%83%86%E3%83%BC%E3%83%97%E3%82%92%E8%B2%BC%E3%82%8B">こちら</a>を参考に、基盤側の接点に絆創膏の貼付け部分などのテープを貼る作業も入れてます。</p>
+<p>※ただ、このテープを分厚いものにしすぎて、あとで悲劇が発生してます…</p>
+<p><br></p>
+<hr>
+<h4 id="_3">作成時記録</h4>
+<p>上記した①②以外は手順の通りです。作成記録の画像だけペタペタ貼っておきます。</p>
+<p><strong>ProMicroへファームウェア書き込み</strong></p>
+<p>あとでもよいですが、LEDが光るかチェックのために左右のProMicroへファームウェアを書き込みます。ケーブルつないでブラウザからできて便利ですね。</p>
+<p><img alt="ファームウェア書き込み" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_write_firmware.jpg" title="認識しないときはリセット"></p>
+<p><br></p>
+<p><strong>LEDのはんだ付け</strong></p>
+<p>LEDはとっても小さいです。無くさないよう注意しましょう。あとはGND端子の位置だけ間違えないようにはんだ付けしましょう。</p>
+<p><img alt="小さなLED" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_led_is_micro.jpg" title="小さなちいさなLED"></p>
+<p>LEDをとりつけたあと、ProMicroのUSB端子を挿すと電源が入って光ります。光ってない部分ははんだ付けミスなりが発生してます。ちなみにメチャまぶしい。</p>
+<p><img alt="まぶしいLED" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_led_light.jpg" title="LEDピカピカ"></p>
+<p><br></p>
+<p><strong>キースイッチ、キーキャップ取り付け</strong></p>
+<p>最後の楽しみ。キースイッチとキーキャプの取り付けです。<br>&nbsp;まずは四隅のキースイッチを設定し固定します。</p>
+<p><img alt="四隅のスイッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_keyswith_corners.jpg" title="まずは四隅をおさえる"></p>
+<p>ひたすらキースイッチを差し込んでいきます。</p>
+<p><img alt="スイッチはめ込み" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_keyswith_all.jpg" title="思考を止めて挿し込む"></p>
+<p>最後にキーキャップを被せて完成！<br>&nbsp;実際は、いちど設定してからキー配置変更で何度も入れ替えてます。</p>
+<p><img alt="キーキャップ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_keycap.jpg" title="見た目完成！"></p>
+<p><br></p>
+<hr>
+<h4 id="_4">できた！</h4>
+<p>以上で見た目上は完成。作業開始して6時間くらいで取り付けまで終わった感じでしょうか。<br>&nbsp;次回、中間・完成後に発生した問題へのトラブルシューティングを簡単に記録しておきます。</p>
+<p><br></p>
+<hr>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-100" href="https://zatsumemo.dev/blog/craft-jsiplit89-meishi2.html">
+分割キーボード（JISplit89）を組み立ててみた（沼）：meishi2でおためしと工具チェック
+    </a>
+</div>
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
+
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="https://zatsumemo.dev/blog/craft-jsiplit89-meishi2.html">分割キーボード（JISplit89）を組み立ててみた（沼）：meishi2でおためしと工具チェック</a></li>
+                <li><a href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html">分割キーボード（JISplit89）を組み立ててみた（沼）：キーボード組み立てへの道～情報収集～</a></li>
+                <li><a href="https://zatsumemo.dev/blog/craft-jsiplit89-first-step.html">分割キーボード（JISplit89）を組み立ててみた（沼）：ことの発端～ThinkPadキーボードから浮気して～</a></li>
+                <li><a href="https://zatsumemo.dev/blog/craft-jsiplit89-summary.html">分割キーボード（JISplit89）を組み立ててみた（沼）：まとめ</a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
+                </div>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex-shrink-0 bg-dark text-light small py-1">
+        <div class="container text-center">
+            &copy; 2026 <a href="https://zatsumemo.dev">雑メモ</a> by <a href="https://zatsumemo.dev/pages/about.html">みずのり</a>. Powered by <a href="http://getpelican.com">Pelican</a>, <a href="http://python.org">Python</a>, <a href="https://getbootstrap.com">Bootstrap 4</a><br>
+            <!-- Do not remove below license sentence -->
+            License: <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>, based on <a href="https://github.com/vuquangtrong/simplify-theme">Simplify Bootstrap Theme</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    -->
+    <script type="text/javascript" src="https://zatsumemo.dev/theme/jquery/jquery-3.4.1.min.js"></script>
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
+    -->
+    <script type="text/javascript" src="https://zatsumemo.dev/theme/bootstrap/bootstrap.min.js"></script>
+    <!--
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+    -->
+        <script type="text/javascript" src="https://zatsumemo.dev/theme/extra/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="https://zatsumemo.dev/theme/style.js"></script>
+
+    <!-- Sharing -->
+
+    <!-- JSON LD -->
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "name": "分割キーボード（JISplit89）を組み立ててみた（沼）：JISplit89を組み立てる！",
+    "headline": "分割キーボード（JISplit89）を組み立ててみた（沼）：JISplit89を組み立てる！",
+    "datePublished": "2026-10-16 14:00:00+09:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "みずのり",
+        "url": "https://zatsumemo.dev/author/mizunori.html"
+    },
+    "image": "craft/2609_diy_keyboard/fig_2609_4_arrived_kit.jpg",
+    "url": "https://zatsumemo.dev/blog/craft-jsiplit89-enjoy-to-craft.html",
+    "description": ""
+}
+</script>
+    <!-- Disqus count -->
+</body>
+
+</html>
