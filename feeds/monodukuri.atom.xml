@@ -48,7 +48,7 @@
 &lt;p&gt;&lt;img alt="追加購入ボード" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_5_alternative_board.jpg" title="購入後、生きてることが発覚"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;p&gt;ちなみに交換後に不調のProMicroをいろいろ調査。リセットを実施してファームウェアを再度書き込みなおすと復旧しました。なんてこった。&lt;/p&gt;
-&lt;p&gt;&lt;a href="#組み立て中のトラブル"&gt;こちらに記載&lt;/a&gt;の「3．ProMicro（基盤）がずれて接触不良となる」の状況で、リセットスイッチがショートしたといった可能性があるかも？と疑ってみました。&lt;/p&gt;
+&lt;p&gt;&lt;a href="#組み立て中のトラブル"&gt;こちらに記載&lt;/a&gt;の「3．ProMicro（基盤）がずれて接触不良となる」の状況で、リセットスイッチあたりがショートしたといった可能性があるかも？と疑ってます。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h4 id="_4"&gt;使用開始後の状況&lt;/h4&gt;
