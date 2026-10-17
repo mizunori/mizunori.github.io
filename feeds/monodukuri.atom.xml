@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>雑メモ - モノづくり</title><link href="https://zatsumemo.dev/" rel="alternate"/><link href="https://zatsumemo.dev/feeds/monodukuri.atom.xml" rel="self"/><id>https://zatsumemo.dev/</id><updated>2026-10-16T14:00:00+09:00</updated><entry><title>分割キーボード（JISplit89）を組み立ててみた（沼）：JISplit89を組み立てる！</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-enjoy-to-craft.html" rel="alternate"/><published>2026-10-16T14:00:00+09:00</published><updated>2026-10-16T14:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-10-16:/blog/craft-jsiplit89-enjoy-to-craft.html</id><summary type="html"/><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>雑メモ - モノづくり</title><link href="https://zatsumemo.dev/" rel="alternate"/><link href="https://zatsumemo.dev/feeds/monodukuri.atom.xml" rel="self"/><id>https://zatsumemo.dev/</id><updated>2026-10-16T16:00:00+09:00</updated><entry><title>JISplit89：組み立て中・組み立て後のトラブル</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-troubleshoot.html" rel="alternate"/><published>2026-10-16T16:00:00+09:00</published><updated>2026-10-16T16:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-10-16:/blog/craft-jsiplit89-troubleshoot.html</id><summary type="html">&lt;p&gt;分割キーボード（JISplit89）を組み立ててみた（沼）：その5&lt;/p&gt;</summary><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
+
+&lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_5_complete.jpg" title="JISplit89の見た目完成版"&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;＜&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-summary.html"&gt;シリーズ全体のリンクはこちら&lt;/a&gt;＞&lt;/p&gt;
+&lt;p&gt;JISplit89の組み立て中、組み立て後に発生したトラブル、一部について解決までの活動をまとめます。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_1"&gt;組み立て中のトラブル&lt;/h4&gt;
+&lt;p&gt;大きく3点を記載しておきます。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1．Enterキー用のスタビライザーが折れる&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;まあまあミスった感じでした…&lt;/p&gt;
+&lt;p&gt;&lt;a href="./2609-4_JISplit89を組み立てる.md#手順以外でやっていることスタビライザーにルブを塗る接点にテープを張る"&gt;こちら&lt;/a&gt;の作業中のこと。基盤に貼るテープについて、ちょっと厚めのモノを使ってしまいました。そのせいでスタビライザーがうまく入らず、少し力を入れた時に破損した…という感じです。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ぽっきりスタビ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_5_damaged_stabilizer.jpg" title="分かりづらいですが折れてます"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;（ある程度使用後のメモ）交換品は購入してますが、折れたままとりあえず使用できてます。キーキャップの付け外しの時に気になりますが、困る状況になるまでは折れたまま使おうかと。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2．右のShiftの位置にあるキースイッチの端子が折れていた&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;作成後、全部のキーが動作している！　…と思ったのですが、右側のShiftの位置のキーだけ動作してませんでした。Shiftに設定したキーは問題に気付きづらいですね。&lt;br&gt;&amp;nbsp;取り外して確認したところ、キースイッチの端子が折れ曲がってました。交換して通常動作へ。まあよくあることでしょう。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3．ProMicro（基盤）がずれて接触不良となる&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;キー割り当てなどの動作を見ているときに特定の2列だけキーが動作しないことがありました。&lt;br&gt;&amp;nbsp;どこかの接触不要を疑って確認したところ、ProMicroの基盤がずれてました。コンスル―ピンは便利ですが、USB端子の抜き差しでずれやすくなるみたいです。電気的に接触不良となった個所が動作しなかったのでしょう。&lt;/p&gt;
+&lt;p&gt;対策として、ProMicro側だけコンスル―ピンをはんだ付けして固定するようにしました。片側だけなので故障した際に交換もできます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_2"&gt;組み立て後のトラブル：問題分析の記録メモ込み&lt;/h4&gt;
+&lt;p&gt;組み立てもキー割り当ても終了し、通常利用をし始めたころにデバイス接続が切れる現象が発生しました。USBを抜いた際の音が鳴ってその後動作しなくなる、再度接続すると数秒は動くがすぐにまた接続が切れてしまう…という動きです。&lt;/p&gt;
+&lt;p&gt;えー、完成してカスタマイズをためしはじめたばかりのタイミングに！？Σ（▔□▔&amp;nbsp;）&lt;/p&gt;
+&lt;p&gt;そんなことを思いながら問題分析した記録を以下にまとめておきます。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分析1：USBの電力不足やUSBケーブルを疑う&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;まずはUSB供給の部分の調査から。USBハブを経由していたのでPCに直接挿して動作が変わるか？USBケーブルを変えて改善するか？といった確認を実施。&lt;br&gt;&amp;nbsp;結果として動作は変わらず。はずれでした。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分析2：左右接続のステレオケーブルを疑う&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;左右の接続に使用しているケーブルは「電源入っている際に抜くとショートするよ」という注意書きがあります。このケーブルの問題を疑ってみました。別ケーブルに置き換えても問題なし。ここじゃない。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分析3：左右どちらかの問題であるか調べる&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;分割キーボードは左右双方にProMicro（基盤）を有し、片方だけでも動作する構成です。そのどちらかに問題がある可能性を考慮し、片方ずつ接続をチェックしてみます。&lt;br&gt;&amp;nbsp;右はOKでしたが、左だけ接続が切れる問題が発生。問題は左側にあり、っと。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分析4：基盤かその他の問題か調べる&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;基盤だけで問題が発生するかを調べます。基盤だけの問題であれば交換で済みますので。&lt;br&gt;&amp;nbsp;バラして基盤だけ取り出してUSBケーブルを接続。基盤だけで問題を確認。ProMicro（基盤）の右側に問題あり、っと。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;…ということで、片方のProMicro（基盤）の問題と特定。利用間もない状況でしたが交換することにしました。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_3"&gt;組み立て後のトラブル対策その後&lt;/h4&gt;
+&lt;p&gt;ということで、交換品のProMicroを購入して交換。無事復旧しましたとさ。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="追加購入ボード" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_5_alternative_board.jpg" title="購入後、生きてることが発覚"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;ちなみに交換後に不調のProMicroをいろいろ調査。リセットを実施してファームウェアを再度書き込みなおすと復旧しました。なんてこった。&lt;/p&gt;
+&lt;p&gt;&lt;a href="#組み立て中のトラブル"&gt;こちらに記載&lt;/a&gt;の「3．ProMicro（基盤）がずれて接触不良となる」の状況で、リセットスイッチがショートしたといった可能性があるかも？と疑ってみました。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="_4"&gt;使用開始後の状況&lt;/h4&gt;
+&lt;p&gt;Enterキー用のスタビライザーの問題は気になりましたが、普通に使える状況です。&lt;br&gt;&amp;nbsp;本格的に使えなくなったら交換するくらいでよいかも？という感じです。&lt;/p&gt;
+&lt;p&gt;ちなみに論点は変わりますが、Enterキーはクリッキーな感触の方が楽しかったので、ここだけmeishi2のおまけで入っていたクリッキーなスイッチに変更してみました。骨折したスタビライザーの元で今のところ楽しく使えてます。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="クリッキー" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_5_clicky_enter.jpg" title="クリッキーなEnter"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>JISplit89：JISplit89を組み立てる！</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-enjoy-to-craft.html" rel="alternate"/><published>2026-10-16T14:00:00+09:00</published><updated>2026-10-16T14:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-10-16:/blog/craft-jsiplit89-enjoy-to-craft.html</id><summary type="html">&lt;p&gt;分割キーボード（JISplit89）を組み立ててみた（沼）：その4&lt;/p&gt;</summary><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
 
 &lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_arrived_kit.jpg" title="JISplit89の購入品一式"&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
@@ -46,12 +103,12 @@
 &lt;h4 id="2"&gt;手順以外でやっていること②：スタビライザーにルブを塗る、接点にテープを張る&lt;/h4&gt;
 &lt;p&gt;&lt;a href="https://salicylic-acid3.hatenablog.com/entry/stabilizer-lubrication"&gt;スタビライザーのルブの話&lt;/a&gt;にてまとまっているこちらの内容です。別途購入したグリスをぬりぬりしておきます。&lt;/p&gt;
 &lt;p&gt;あわせて&lt;a href="https://salicylic-acid3.hatenablog.com/entry/stabilizer-lubrication#PCB%E3%81%AB%E3%83%86%E3%83%BC%E3%83%97%E3%82%92%E8%B2%BC%E3%82%8B"&gt;こちら&lt;/a&gt;を参考に、基盤側の接点に絆創膏の貼付け部分などのテープを貼る作業も入れてます。&lt;/p&gt;
-&lt;p&gt;※ただ、このテープを分厚いものにしすぎて、あとで悲劇が発生してます…&lt;/p&gt;
+&lt;p&gt;※ただ、このテープを分厚いものにしすぎて、あとで&lt;a href="{static}2609-5_JISplit89でのトラブル.md#組み立て中のトラブル#組み立て中のトラブル"&gt;悲劇&lt;/a&gt;が発生してます…&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h4 id="_3"&gt;作成時記録&lt;/h4&gt;
 &lt;p&gt;上記した①②以外は手順の通りです。作成記録の画像だけペタペタ貼っておきます。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;ProMicroへファームウェア書き込み&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ProMicro（基盤）へファームウェア書き込み&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;あとでもよいですが、LEDが光るかチェックのために左右のProMicroへファームウェアを書き込みます。ケーブルつないでブラウザからできて便利ですね。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="ファームウェア書き込み" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_4_write_firmware.jpg" title="認識しないときはリセット"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
@@ -73,7 +130,7 @@
 &lt;h4 id="_4"&gt;できた！&lt;/h4&gt;
 &lt;p&gt;以上で見た目上は完成。作業開始して6時間くらいで取り付けまで終わった感じでしょうか。&lt;br&gt;&amp;nbsp;次回、中間・完成後に発生した問題へのトラブルシューティングを簡単に記録しておきます。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>分割キーボード（JISplit89）を組み立ててみた（沼）：meishi2でおためしと工具チェック</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-meishi2.html" rel="alternate"/><published>2026-10-16T12:00:00+09:00</published><updated>2026-10-16T12:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-10-16:/blog/craft-jsiplit89-meishi2.html</id><summary type="html"/><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
+&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>JISplit89：meishi2でおためしと工具チェック</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-meishi2.html" rel="alternate"/><published>2026-10-16T12:00:00+09:00</published><updated>2026-10-16T12:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-10-16:/blog/craft-jsiplit89-meishi2.html</id><summary type="html">&lt;p&gt;分割キーボード（JISplit89）を組み立ててみた（沼）：その3&lt;/p&gt;</summary><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
 
 &lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_3_meishi2_completed.jpg" title="meishi2の完成状態"&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
@@ -125,7 +182,7 @@
 &lt;h4 id="_3"&gt;マクロの展開もできるらしい&lt;/h4&gt;
 &lt;p&gt;キーの変更に加え、マクロも展開できるみたいですね。&lt;a href="https://docs.qmk.fm/keycodes#keycodes-overview"&gt;参考&lt;/a&gt;。&lt;br&gt;&amp;nbsp;キーは4つだけですが、使える要素もありそうなので、普段使いで多い操作があれば適用して見ればいい感じになりそうですね。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>分割キーボード（JISplit89）を組み立ててみた（沼）：キーボード組み立てへの道～情報収集～</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html" rel="alternate"/><published>2026-09-27T18:00:00+09:00</published><updated>2026-09-27T18:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-09-27:/blog/craft-jsiplit89-road-to-craft.html</id><summary type="html"/><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
+&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>JISplit89：キーボード組み立てへの道～情報収集～</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html" rel="alternate"/><published>2026-09-27T18:00:00+09:00</published><updated>2026-09-27T18:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-09-27:/blog/craft-jsiplit89-road-to-craft.html</id><summary type="html">&lt;p&gt;分割キーボード（JISplit89）を組み立ててみた（沼）：その2&lt;/p&gt;</summary><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
 
 &lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_2_various_key_switches.jpg" title="Thinkpad二刀流"&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
@@ -199,7 +256,7 @@
 &lt;/ul&gt;
 &lt;p&gt;そんじゃ、meishi2から作ってみますかー&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>分割キーボード（JISplit89）を組み立ててみた（沼）：ことの発端～ThinkPadキーボードから浮気して～</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-first-step.html" rel="alternate"/><published>2026-09-27T17:00:00+09:00</published><updated>2026-09-27T17:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-09-27:/blog/craft-jsiplit89-first-step.html</id><summary type="html"/><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
+&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>JISplit89：ことの発端～ThinkPadキーボードから浮気して～</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-first-step.html" rel="alternate"/><published>2026-09-27T17:00:00+09:00</published><updated>2026-09-27T17:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-09-27:/blog/craft-jsiplit89-first-step.html</id><summary type="html">&lt;p&gt;分割キーボード（JISplit89）を組み立ててみた（沼）：その1&lt;/p&gt;</summary><content type="html">&lt;!-- Modified: 2026-09-21 11:00 --&gt;
 
 &lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_1_double_thinkpad.jpg" title="Thinkpad二刀流"&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
@@ -245,7 +302,7 @@ ThinkPadキーボードで使っていた形式と同様に、HHKBやREALFORCE�
 &lt;p&gt;世の中にはキーボード沼にずっぽりハマっている方はいる（ソフトウェア開発やってる人は道具へのこだわりのため多い）のですが、おためしがてら入口に入ってみることにしました。&lt;/p&gt;
 &lt;p&gt;最初はファンクションキーもあるJISplit89あたりを試してみようかな？と目途を立てて、情報集めからスタートしてみました。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>分割キーボード（JISplit89）を組み立ててみた（沼）：まとめ</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-summary.html" rel="alternate"/><published>2026-09-27T16:30:00+09:00</published><updated>2026-09-27T17:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-09-27:/blog/craft-jsiplit89-summary.html</id><summary type="html">&lt;p&gt;突如思い立って作った分割キーボードキット「JISplit89」のおはなし&lt;/p&gt;</summary><content type="html">&lt;!-- 注：アイキャッチのパス（ファイル名込み）は日本語が入るとFBで表示されない様子 --&gt;
+&lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>分割キーボード（JISplit89）を組み立ててみた（沼）：まとめ</title><link href="https://zatsumemo.dev/blog/craft-jsiplit89-summary.html" rel="alternate"/><published>2026-09-27T16:30:00+09:00</published><updated>2026-10-16T16:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-09-27:/blog/craft-jsiplit89-summary.html</id><summary type="html">&lt;p&gt;突如思い立って作った分割キーボードキット「JISplit89」のおはなし&lt;/p&gt;</summary><content type="html">&lt;!-- 注：アイキャッチのパス（ファイル名込み）は日本語が入るとFBで表示されない様子 --&gt;
 &lt;p&gt;&lt;img alt="アイキャッチ" class="img-caption" src="https://zatsumemo.dev/blog/craft/2609_diy_keyboard/fig_2609_0_evolution.jpg" title="ある程度触ってみた後の状況"&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
 &lt;p&gt;突如思い立って分割キーボードキットの「JISplit89」を購入、組み立ててみました。&lt;br&gt;&amp;nbsp;思い立ってから調査、実際に作ってみるところまでの記事をまとめる予定です。&lt;/p&gt;
@@ -253,11 +310,11 @@ ThinkPadキーボードで使っていた形式と同様に、HHKBやREALFORCE�
 &lt;hr&gt;
 &lt;h4 id="_1"&gt;目次リンク&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-first-step.html"&gt;ことの発端～ThinkPadキーボードから浮気して～&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html"&gt;キーボード組み立てへの道～情報収集～&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-first-step.html"&gt;1．ことの発端～ThinkPadキーボードから浮気して～&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-road-to-craft.html"&gt;2．キーボード組み立てへの道～情報収集～&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-meishi2.html"&gt;3．meishi2でおためしと工具チェック&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-enjoy-to-craft.html"&gt;4．JISplit89を組み立てる！&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-troubleshoot.html"&gt;5．組み立て中・組み立て後のトラブル&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- - [meishi2でおためしと工具チェック]({filename}./2609-3_meishi2でおためしと工具チェック.md) --&gt;
-&lt;!-- - [JISplit89を組み立てる！]({filename}./2609-4_JISplit89を組み立てる.md) --&gt;
-
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry></feed>
