@@ -415,7 +415,7 @@ ThinkPadキーボードで使っていた形式と同様に、HHKBやREALFORCE�
 &lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-enjoy-to-craft.html"&gt;4．JISplit89を組み立てる！&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-troubleshoot.html"&gt;5．組み立て中・組み立て後のトラブル&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-after-build.html"&gt;6．完成後のキー配置と気づき&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}./2609-7_メンテメモ"&gt;7．おまけ：個人用メンテメモ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zatsumemo.dev/blog/craft-jsiplit89-my-maintainance-memo.html"&gt;7．おまけ：個人用メンテメモ&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;</content><category term="モノづくり"/><category term="keyboard"/><category term="JISplit89"/></entry><entry><title>テスト自動化のメール送受信判定に使うMailSlurpを取り込んだ時のメモ</title><link href="https://zatsumemo.dev/blog/mailslurp-setup.html" rel="alternate"/><published>2026-09-21T14:00:00+09:00</published><updated>2026-09-21T14:00:00+09:00</updated><author><name>みずのり</name></author><id>tag:zatsumemo.dev,2026-09-21:/blog/mailslurp-setup.html</id><summary type="html">&lt;p&gt;E2Eテストの自動化にMailSlurpを使ってメール受信判定をした時のメモ&lt;/p&gt;</summary><content type="html">&lt;!-- Modified: 2026-09-28 16:00 --&gt;
